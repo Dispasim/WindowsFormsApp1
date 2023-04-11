@@ -23,10 +23,10 @@ namespace WindowsFormsApp1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new PageBienvenue());
-            recupDonnee("prix_Bouquet", "bouquet", "Id_Bouquet", "20002");
+            //recupDonnee("prix_Bouquet", "bouquet", "Id_Bouquet", "20002");
             MessageBox.Show("fin des opérations");
             
-            Console.ReadLine();
+            
         }
 
         //Méthode qui vérifie si un element existe dans une table
