@@ -10,24 +10,22 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class PageCommande : Form
+    public partial class confirmationAchat : Form
     {
-        public PageCommande()
+        public confirmationAchat(string Email, string idBouquet)
         {
             InitializeComponent();
+            string email = Email;
+            string id = idBouquet;
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
         {
 
         }

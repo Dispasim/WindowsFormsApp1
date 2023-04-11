@@ -19,10 +19,11 @@ namespace WindowsFormsApp1
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=fleurs;UID=root;PASSWORD=root;";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PageBienvenue());
-            
+
+            ///Application.EnableVisualStyles();
+            ///Application.SetCompatibleTextRenderingDefault(false);
+            ///Application.Run(new PageBienvenue());
+            recupDonnee("prix_Bouquet", "bouquet", "Id_Bouquet", "20002");
             MessageBox.Show("fin des opérations");
             
             Console.ReadLine();
@@ -115,7 +116,7 @@ namespace WindowsFormsApp1
             }
             string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Bouquet) values(" + numerocommande.ToString() + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "','" + id_bouquet + "');";
             MySqlCommand command = new MySqlCommand(query, connection);
-            Console.WriteLine(query);
+            
             try
             {
                 command.ExecuteNonQuery();
@@ -128,8 +129,11 @@ namespace WindowsFormsApp1
         }
 
         //Méthode pour expoter les clients qui ont commandé plusieurs fois ce mois-ci 
-        public static void exportxml(MySqlConnection connection)
+        public static void exportxml()
         {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=fleurs;UID=root;PASSWORD=root;";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
             string query = "SELECT client.Courriel FROM fleurs.commande inner join fleurs.client on commande.Courriel = client.Courriel where commande.Date_Commande >= DATE_SUB(NOW(), INTERVAL 1 MONTH) group by commande.Courriel having count(*) > 1;";
             MySqlCommand command = new MySqlCommand(query, connection);
 
@@ -145,17 +149,38 @@ namespace WindowsFormsApp1
                 {
                     XmlElement clientElement = document.CreateElement("client");
                     clientElement.SetAttribute("Courriel", clients.GetValue(i).ToString());
-                    
                     rootelement.AppendChild(clientElement);
+
                 }
+                
             }
             document.Save("C:\\Users\\Eliot\\Downloads\\clients.xml");
+            connection.Close();
 
 
+        }
+        //Méthode qui récupère une donnée lié à un élément 
+        public static string recupDonnee(string donnee, string table, string colonne, string element)
+        {
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=fleurs;UID=root;PASSWORD=root;";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+            string rep;
+            string query = "SELECT " + donnee + " FROM " + table + " WHERE " + colonne + " ='" + element + "';";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            
+            rep = command.ExecuteScalar().ToString();
+            
+
+
+
+
+            connection.Close();
+            return rep;
         }
 
     }
 
 
 }
-}
+
