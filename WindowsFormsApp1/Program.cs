@@ -168,13 +168,7 @@ namespace WindowsFormsApp1
             string rep;
             string query = "SELECT " + donnee + " FROM " + table + " WHERE " + colonne + " ='" + element + "';";
             MySqlCommand command = new MySqlCommand(query, connection);
-            
             rep = command.ExecuteScalar().ToString();
-            
-
-
-
-
             connection.Close();
             return rep;
         }
