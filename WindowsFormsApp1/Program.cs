@@ -20,13 +20,13 @@ namespace WindowsFormsApp1
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            ///Application.EnableVisualStyles();
-            ///Application.SetCompatibleTextRenderingDefault(false);
-            ///Application.Run(new PageBienvenue());
-            recupDonnee("prix_Bouquet", "bouquet", "Id_Bouquet", "20002");
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new PageBienvenue());
+            //recupDonnee("prix_Bouquet", "bouquet", "Id_Bouquet", "20002");
             MessageBox.Show("fin des opérations");
             
-            Console.ReadLine();
+            
         }
 
         //Méthode qui vérifie si un element existe dans une table
@@ -168,20 +168,19 @@ namespace WindowsFormsApp1
             string rep;
             string query = "SELECT " + donnee + " FROM " + table + " WHERE " + colonne + " ='" + element + "';";
             MySqlCommand command = new MySqlCommand(query, connection);
-            
             rep = command.ExecuteScalar().ToString();
-            
-
-
-
-
             connection.Close();
             return rep;
         }
 
-    }
-    //test5 salut moi c'est Kyllian il est 22h121
+    }/*
+<<<<<<< HEAD
+    //test5 salut moi c'est Kyllian il est 22h1247
+    
+=======
     
 
+>>>>>>> 34725c3086ceb3f5f8e9e9d013cb8c62da4d1c5c
+    */
 }
 
