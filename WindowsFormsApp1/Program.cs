@@ -19,10 +19,11 @@ namespace WindowsFormsApp1
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=fleurs;UID=root;PASSWORD=root;";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
-
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PageBienvenue());
+            //CreationClient("test3", "test3", "test3", "test3", "test3", "test3", "test3", "test3", "test3");
+            CreationCommande("somewhere", "t nul", "test3", 20001, 30001);
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new PageBienvenue());
             //recupDonnee("prix_Bouquet", "bouquet", "Id_Bouquet", "20002");
             MessageBox.Show("fin des opérations");
             
@@ -68,7 +69,7 @@ namespace WindowsFormsApp1
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=fleurs;UID=root;PASSWORD=root;";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
-            string query = "INSERT INTO client(Courriel,Nom_Client,Prenom_Client,Telephone,mdp,Adresse_Livraison,Numero) values('" + Courriel + "','" + Nom + "','" + Prenom + "','" + Telephone + "','" + Mdp + "','" + Adresse + "','" + Numero + "'); INSERT INTO carte_bancaire(Numero,Date_Expiration,Cryptogramme) values('" + Numero + "','" + dateexpiration + "','" + cryptogramme + ");";
+            string query = "INSERT INTO client(Courriel,Nom_Client,Prenom_Client,Telephone,mdp,Adresse_Facturation,Numero_carte,Date_Expiration,Cryptogramme) values('" + Courriel + "','" + Nom + "','" + Prenom + "','" + Telephone + "','" + Mdp + "','" + Adresse + "','" + Numero + "','" + dateexpiration + "','" + cryptogramme + "');";
             MySqlCommand command = new MySqlCommand(query, connection);
             try
             {
@@ -76,7 +77,7 @@ namespace WindowsFormsApp1
             }
             catch (MySqlException e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show(e.Message);
             }
             connection.Close();
         }
@@ -100,7 +101,7 @@ namespace WindowsFormsApp1
         }
 
         //Méthode qui crée une commande
-        public static void CreationCommande(string adresse, string message, string Courriel, string id_bouquet)
+        public static void CreationCommande(string adresse, string message, string Courriel, int id_bouquet, int id_magasin)
         {
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=fleurs;UID=root;PASSWORD=root;";
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -114,7 +115,7 @@ namespace WindowsFormsApp1
             {
                 numerocommande = random.Next(1000000, 9999999);
             }
-            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Bouquet) values(" + numerocommande.ToString() + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "','" + id_bouquet + "');";
+            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Bouquet,Id_Magasin) values(" + numerocommande.ToString() + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_bouquet + ","+ id_magasin + ");";
             MySqlCommand command = new MySqlCommand(query, connection);
             
             try
@@ -123,7 +124,7 @@ namespace WindowsFormsApp1
             }
             catch (MySqlException e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show(e.Message);
             }
             connection.Close();
         }
