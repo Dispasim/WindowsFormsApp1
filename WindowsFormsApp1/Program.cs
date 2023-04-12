@@ -173,17 +173,6 @@ namespace WindowsFormsApp1
             return rep;
         }
 
-    }/*
-<<<<<<< HEAD
-    //test5 salut moi c'est Kyllian il est 22h1247
-    
-=======
-    
     }
-    
-
-
->>>>>>> 34725c3086ceb3f5f8e9e9d013cb8c62da4d1c5c
-    */
 }
 
