@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
             //CreationClient("test3", "test3", "test3", "test3", "test3", "test3", "test3", "test3", "test3");
-            CreationCommande("somewhere", "t nul", "test3", 20001, 30001);
+            //CreationCommande("somewhere", "t nul", "test3", 20001, 30001);
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new PageBienvenue());
