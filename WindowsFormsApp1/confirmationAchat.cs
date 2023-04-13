@@ -12,11 +12,13 @@ namespace WindowsFormsApp1
 {
     public partial class confirmationAchat : Form
     {
-        public confirmationAchat(string Email, string idBouquet)
+        private string email;
+        private int id;
+        public confirmationAchat(string Email, int idBouquet)
         {
             InitializeComponent();
             string email = Email;
-            string id = idBouquet;
+            int id = idBouquet;
 
         }
 

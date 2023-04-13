@@ -12,10 +12,11 @@ namespace WindowsFormsApp1
 {
     public partial class EspaceClient : Form
     {
+        private string courriel;
         public EspaceClient(string Courriel)
         {
             InitializeComponent();
-            string courriel = Courriel;
+            courriel = Courriel;
         }
 
         private void EspaceClient_Load(object sender, EventArgs e)
@@ -32,7 +33,9 @@ namespace WindowsFormsApp1
 
         private void buttoncommande_Click(object sender, EventArgs e)
         {
-
+            PageCommande pageCommande = new PageCommande(courriel);
+            pageCommande.ShowDialog();
+            this.Close();
         }
     }
 }
