@@ -21,9 +21,9 @@ namespace WindowsFormsApp1
             connection.Open();
             //CreationClient("test3", "test3", "test3", "test3", "test3", "test3", "test3", "test3", "test3");
             //CreationCommande("somewhere", "t nul", "test3", 20001, 30001);
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new PageBienvenue());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new PageBienvenue());
             //recupDonnee("prix_Bouquet", "bouquet", "Id_Bouquet", "20002");
             MessageBox.Show("fin des opérations");
             
