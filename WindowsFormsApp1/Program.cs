@@ -1,10 +1,15 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using Newtonsoft.Json;
+using static System.Net.Mime.MediaTypeNames;
+using Formatting = Newtonsoft.Json.Formatting;
 
 namespace WindowsFormsApp1
 {
@@ -174,6 +179,53 @@ namespace WindowsFormsApp1
             return rep;
         }
 
+        //Méthode pour exporter en json les clients n'ayant pas commandé depuis plus de 6 mois
+        public static void exportjson(string outputFilePath, string email)
+        {
+            // Connexion à la base de données SQL
+            string connectionString = "SERVER=localhost;PORT=3306;DATABASE=fleurs;UID=root;PASSWORD=root;";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+            string query = "SELECT * FROM client WHERE Courriel NOT IN (SELECT Courriel FROM commande WHERE date_Commande > DATE_SUB(NOW(), INTERVAL 6 MONTH)) UNION SELECT * FROM client LEFT JOIN commande ON client.Courriel = commande.Courriel WHERE commande.Numero_Commande IS NULL ";
+            MySqlCommand command = new MySqlCommand(query, connection);
+
+            MySqlDataReader clients = command.ExecuteReader();
+
+            // Création d'une liste pour stocker les clients
+            List<Client> liste_clients = new List<Client>();
+
+            // Parcours des résultats de la requête SQL
+            while (clients.Read())
+            {
+                Client client = new Client();
+                client.Courriel = Convert.ToString(clients["Courriel"]);
+                liste_clients.Add(client);
+            }
+
+            // Sérialisation de la liste de clients en JSON
+            string json = JsonConvert.SerializeObject(clients, Formatting.Indented);
+
+            // Écriture du JSON dans le fichier de sortie
+            System.IO.File.WriteAllText(outputFilePath, json);
+
+        }
+
+        public class Client //classe Client pour représenter les informations relatives aux clients qu'on va exporter en JSON
+        {
+            public string Courriel { get; set; }
+            public Client() //constructeur par défaut
+            {
+            }
+            public Client(string courriel)
+            {
+                Courriel = courriel;
+            }
+        }
+
+        
+
     }
+
+
 }
 
