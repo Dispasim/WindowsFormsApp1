@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,41 +12,44 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
+
     public partial class PageConnection : Form
     {
-        public PageConnection()
+        private MySqlConnection connection;
+        public PageConnection(MySqlConnection _connection)
         {
             InitializeComponent();
+            connection = _connection;
         }
 
         private void textBox_Email_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void TextBox_Mdp_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            
+
         }
 
         private void Boutton_Retour_Click(object sender, EventArgs e)
         {
-            PageBienvenue pageBienvenue = new PageBienvenue();
+            PageBienvenue pageBienvenue = new PageBienvenue(connection);
             pageBienvenue.ShowDialog();
             this.Close();
         }
 
-        
+
 
         private void button_Valider_Click(object sender, EventArgs e)
         {
             string Mdp = TextBox_Mdp.Text;
             string Email = textBox_Email.Text;
-            if (Program.Existe(Email, "client", "Courriel"))
+            if (Program.Existe(connection, Email, "client", "Courriel"))
             {
-                if(Program.VerificationMotdepasse(Mdp, Email))
+                if (Program.VerificationMotdepasse(connection, Mdp, Email))
                 {
-                    EspaceClient espaceClient= new EspaceClient(Email);
+                    EspaceClient espaceClient = new EspaceClient(connection, Email);
                     espaceClient.ShowDialog();
                     this.Close();
                 }
@@ -58,6 +62,11 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Email ou mot de passe invalide");
             }
+
+        }
+
+        private void PageConnection_Load(object sender, EventArgs e)
+        {
 
         }
     }

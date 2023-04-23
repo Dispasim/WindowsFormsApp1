@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,13 +13,15 @@ namespace WindowsFormsApp1
 {
     public partial class confirmationAchat : Form
     {
+        private MySqlConnection connection;
         private string email;
         private int id;
-        public confirmationAchat(string Email, int idBouquet)
+        public confirmationAchat(MySqlConnection _connection, string Email, int idBouquet)
         {
             InitializeComponent();
-            string email = Email;
-            int id = idBouquet;
+            email = Email;
+            id = idBouquet;
+            connection = _connection;
 
         }
 

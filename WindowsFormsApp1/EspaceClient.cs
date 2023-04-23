@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,12 @@ namespace WindowsFormsApp1
 {
     public partial class EspaceClient : Form
     {
+        private MySqlConnection connection;
         private string courriel;
-        public EspaceClient(string Courriel)
+        public EspaceClient(MySqlConnection _connection, string Courriel)
         {
             InitializeComponent();
+            connection = _connection;
             courriel = Courriel;
         }
 
@@ -26,14 +29,14 @@ namespace WindowsFormsApp1
 
         private void buttondeco_Click(object sender, EventArgs e)
         {
-            PageBienvenue pageBienvenue = new PageBienvenue();
+            PageBienvenue pageBienvenue = new PageBienvenue(connection);
             pageBienvenue.ShowDialog();
             this.Close();
         }
 
         private void buttoncommande_Click(object sender, EventArgs e)
         {
-            PageCommande pageCommande = new PageCommande(courriel);
+            PageCommande pageCommande = new PageCommande(connection, courriel);
             pageCommande.ShowDialog();
             this.Close();
         }

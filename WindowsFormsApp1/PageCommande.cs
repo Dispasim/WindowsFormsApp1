@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,12 @@ namespace WindowsFormsApp1
 {
     public partial class PageCommande : Form
     {
-        public PageCommande(string Courriel)
+        private string courriel;
+        private MySqlConnection connection;
+        public PageCommande(MySqlConnection _connection,string Courriel)
         {
             InitializeComponent();
-            string courriel = Courriel;
+            courriel = Courriel;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -31,6 +34,11 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             //ConfirmationCommande confirmationCommande = new ConfirmationCommande(Courriel);
+        }
+
+        private void PageCommande_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

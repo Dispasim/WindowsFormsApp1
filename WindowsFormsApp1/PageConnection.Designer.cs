@@ -103,6 +103,7 @@
             this.Controls.Add(this.textBox_Email);
             this.Name = "PageConnection";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.PageConnection_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

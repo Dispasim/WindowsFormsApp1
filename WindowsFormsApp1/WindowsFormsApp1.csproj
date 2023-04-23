@@ -91,12 +91,6 @@
     <Compile Include="CreationCompte.Designer.cs">
       <DependentUpon>CreationCompte.cs</DependentUpon>
     </Compile>
-    <Compile Include="epsaceadmin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="epsaceadmin.Designer.cs">
-      <DependentUpon>epsaceadmin.cs</DependentUpon>
-    </Compile>
     <Compile Include="EspaceClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,9 +125,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CreationCompte.resx">
       <DependentUpon>CreationCompte.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="epsaceadmin.resx">
-      <DependentUpon>epsaceadmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EspaceClient.resx">
       <DependentUpon>EspaceClient.cs</DependentUpon>

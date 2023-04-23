@@ -116,6 +116,7 @@
             this.Controls.Add(this.label1);
             this.Name = "PageCommande";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.PageCommande_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

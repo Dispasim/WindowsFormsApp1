@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,11 @@ namespace WindowsFormsApp1
 {
     public partial class PageBienvenue : Form
     {
-        public PageBienvenue()
+        MySqlConnection connection;
+        public PageBienvenue(MySqlConnection _connection)
         {
             InitializeComponent();
+            connection = _connection;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -24,14 +27,14 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CreationCompte creationCompte = new CreationCompte();
+            CreationCompte creationCompte = new CreationCompte(connection);
             creationCompte.ShowDialog();
             this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            PageConnection pageConnection = new PageConnection();
+            PageConnection pageConnection = new PageConnection(connection);
             pageConnection.ShowDialog();
             this.Close();
 
