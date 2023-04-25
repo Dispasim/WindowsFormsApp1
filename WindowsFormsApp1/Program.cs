@@ -210,6 +210,12 @@ namespace WindowsFormsApp1
             }
         }
 
+        public static float fidelite(MySqlConnection connection, string courriel)
+        {
+            float rep = 1;
+            string query = 
+        }
+
 
 
     }
