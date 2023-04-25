@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using methodes;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace WindowsFormsApp1
         private string email;
         private int id;
         private int magasin;
+        private string livraison;
         
         public confirmationAchat(MySqlConnection _connection, string Email, int idBouquet)
         {
@@ -86,7 +88,24 @@ namespace WindowsFormsApp1
                 
             }
             magasin = int.Parse(Program.recupDonnee(connection, "Id_Magasin", "magasin", "Adresse_magasin", texteElement));
-            MessageBox.Show(magasin.ToString());
+            
+            Program.CreationCommande(connection, textBox1.Text, richTextBox1.Text, email, id, magasin);
+            EspaceClient espaceClient = new EspaceClient(connection,email);
+            espaceClient.ShowDialog();
+            this.Close();
+
+
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
