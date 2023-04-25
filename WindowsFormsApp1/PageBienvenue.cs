@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
 {
     public partial class PageBienvenue : Form
     {
-        MySqlConnection connection;
+        private MySqlConnection connection;
         public PageBienvenue(MySqlConnection _connection)
         {
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
     

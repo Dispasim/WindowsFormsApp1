@@ -12,12 +12,13 @@ namespace testconsole
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=fleurs;UID=root;PASSWORD=root;";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
-            CreationClient(connection, "testfid", "", "", "", "", "", "", "", "");
-            for (int i = 0;i <= 5 ; i++)
-            {
-                CreationCommande(connection, "quelque part", "tg", "testfid", 20003, 30001);
+            List<string> liste = new List<string>();
+            liste = listMagasinAdresse(connection);
+            foreach (string s in liste) {
+                Console.WriteLine(s);
             }
-            Console.WriteLine(fidelite(connection, "testfid"));
+            
+
             Console.WriteLine("fin des opérations");
             connection.Close();
         }
@@ -29,6 +30,7 @@ namespace testconsole
             string query2 = "SELECT COUNT(*) FROM fleurs.commande WHERE commande.courriel = '" + courriel + "';";
             MySqlCommand command1 = new MySqlCommand(query1, connection);
             MySqlCommand command2 = new MySqlCommand(query2, connection);
+
             object mois  = command1.ExecuteScalar();
             object commande = command2.ExecuteScalar();
             float Mois = float.Parse(mois.ToString())+1;
@@ -100,6 +102,39 @@ namespace testconsole
                 Console.WriteLine(e.ToString());
             }
 
+        }
+        public static string recupDonneeInt(MySqlConnection connection, string donnee, string table, string colonne, int element)
+        {
+
+            string rep;
+            string query = "SELECT " + donnee + " FROM " + table + " WHERE " + colonne + " =" + element + ";";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            rep = command.ExecuteScalar().ToString();
+
+            return rep;
+        }
+
+        public static string test(MySqlConnection connection)
+        {
+            string query = "SELECT Nom_Bouquet FROM bouquet WHERE Id_Bouquet =20001;";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            return command.ExecuteScalar().ToString();
+        }
+
+        public static List<string> listMagasinAdresse(MySqlConnection connection)
+        {
+            List<string> rep = new List<string>();
+            string query = "SELECT Adresse_magasin FROM magasin";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                rep.Add(reader.GetString(0));
+            }
+            reader.Close();
+            command.Dispose();
+
+            return rep;
         }
     }
 }

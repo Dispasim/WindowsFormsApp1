@@ -46,7 +46,7 @@ namespace WindowsFormsApp1
         {
             if (Program.Existe(connection, textBoxEmail.Text, "client", "Courriel"))
             {
-                MessageBox.Show("Il existe déjà un compte lié à cte email");
+                MessageBox.Show("Il existe déjà un compte lié à cet email");
             }
             else
             {

@@ -34,6 +34,13 @@ namespace WindowsFormsApp1
 
 
         }
+        // méthode pour tester si la connection marche : MessageBox.Show(Program.test(connection));
+        public static string test(MySqlConnection connection)
+        {
+            string query = "SELECT Nom_Bouquet FROM bouquet WHERE Id_Bouquet =20001;";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            return command.ExecuteScalar().ToString();
+        }
 
         //Méthode qui vérifie si un element existe dans une table
 
@@ -53,7 +60,7 @@ namespace WindowsFormsApp1
 
         }
         //pareil que Existe mais vérifie un int
-        static bool ExisteInt(MySqlConnection connection, int element, string table, string colonne)
+        public static bool ExisteInt(MySqlConnection connection, int element, string table, string colonne)
         {
             bool rep = true;
             string query = "SELECT COUNT(*) FROM " + table + " WHERE " + colonne + " = " + element;
@@ -163,6 +170,18 @@ namespace WindowsFormsApp1
             string query = "SELECT " + donnee + " FROM " + table + " WHERE " + colonne + " ='" + element + "';";
             MySqlCommand command = new MySqlCommand(query, connection);
             rep = command.ExecuteScalar().ToString();
+            command.Dispose();
+
+            return rep;
+        }
+        //Méthode qui récupère une donnée lié à un élément  où l'élément est un int 
+        public static string recupDonneeInt(MySqlConnection connection, string donnee, string table, string colonne, int element)
+        {
+
+            string rep;
+            string query = "SELECT " + donnee + " FROM " + table + " WHERE " + colonne + " =" + element + ";";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            rep = command.ExecuteScalar().ToString();
 
             return rep;
         }
@@ -210,7 +229,8 @@ namespace WindowsFormsApp1
             }
         }
 
-        //prend un paramètre un cloient et renvoie 0.85 s'il a plus de 5 commandes en moyenne, 0.95 s'il en a plus de 1 mais moins de 5 et 1 sinon
+        //prend un paramètre un cloient et renvoie 0.85 s'il a plus de 5 commandes en moyenne, 0.95 s'il en a plus de 1 mais moins de 5 et 1 sinon.
+        
         public static float fidelite(MySqlConnection connection, string courriel)
         {
             float rep = 1;
@@ -238,6 +258,26 @@ namespace WindowsFormsApp1
 
 
         }
+
+        //Renvoie la liste de l'adresse de tous les magasins 
+        public static List<string> listMagasinAdresse(MySqlConnection connection)
+        {
+            List<string> rep = new List<string>();
+            string query = "SELECT Adresse_magasin FROM magasin";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                rep.Add(reader.GetString(0));
+            }
+            reader.Close();
+            command.Dispose();
+            return rep;
+            
+        }
+        
+
+
 
 
 

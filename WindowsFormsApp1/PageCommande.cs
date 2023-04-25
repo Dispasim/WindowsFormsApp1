@@ -19,6 +19,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             courriel = Courriel;
+            connection = _connection;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -33,12 +34,42 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //ConfirmationCommande confirmationCommande = new ConfirmationCommande(Courriel);
+            confirmationAchat confirmationachat = new confirmationAchat(connection,courriel, 20001);
+            confirmationachat.ShowDialog();
+            this.Close();
         }
 
         private void PageCommande_Load(object sender, EventArgs e)
         {
+            
+        }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            confirmationAchat confirmationachat = new confirmationAchat(connection, courriel, 20004);
+            confirmationachat.ShowDialog();
+            this.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            confirmationAchat confirmationachat = new confirmationAchat(connection, courriel, 20005);
+            confirmationachat.ShowDialog();
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            confirmationAchat confirmationachat = new confirmationAchat(connection, courriel, 20002);
+            confirmationachat.ShowDialog();
+            this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            confirmationAchat confirmationachat = new confirmationAchat(connection, courriel, 20003);
+            confirmationachat.ShowDialog();
+            this.Close();
         }
     }
 }
