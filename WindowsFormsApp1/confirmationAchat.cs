@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
         private string email;
         private int id;
         private int magasin;
-        private string livraison;
+        
         
         public confirmationAchat(MySqlConnection _connection, string Email, int idBouquet)
         {

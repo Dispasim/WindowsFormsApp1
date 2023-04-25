@@ -51,7 +51,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(8, 62);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(143, 68);
             this.button1.TabIndex = 2;
@@ -62,7 +62,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(8, 133);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(143, 68);
             this.button2.TabIndex = 3;
@@ -73,7 +73,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(162, 133);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(143, 68);
             this.button3.TabIndex = 4;
@@ -84,7 +84,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(162, 62);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(143, 68);
             this.button4.TabIndex = 5;
@@ -95,7 +95,7 @@
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(309, 62);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(143, 68);
             this.button5.TabIndex = 6;
@@ -106,12 +106,13 @@
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(309, 133);
-            this.button6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(143, 68);
             this.button6.TabIndex = 7;
             this.button6.Text = "Bouquet personnalisé";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // PageCommande
             // 
@@ -125,7 +126,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PageCommande";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.PageCommande_Load);

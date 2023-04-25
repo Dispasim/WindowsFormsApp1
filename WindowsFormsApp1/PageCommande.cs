@@ -71,5 +71,12 @@ namespace WindowsFormsApp1
             confirmationachat.ShowDialog();
             this.Close();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            CommandePerso commandePerso = new CommandePerso(connection, courriel);
+            commandePerso.ShowDialog();
+            this.Close();
+        }
     }
 }

@@ -91,6 +91,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeFile1.cs" />
+    <Compile Include="CommandePerso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommandePerso.Designer.cs">
+      <DependentUpon>CommandePerso.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreationCompte.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CommandePerso.resx">
+      <DependentUpon>CommandePerso.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreationCompte.resx">
       <DependentUpon>CreationCompte.cs</DependentUpon>
     </EmbeddedResource>

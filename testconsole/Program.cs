@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
+using System.Diagnostics;
 
 namespace testconsole
 
@@ -12,12 +13,12 @@ namespace testconsole
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=fleurs;UID=root;PASSWORD=root;";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
-            List<string> liste = new List<string>();
-            liste = listMagasinAdresse(connection);
-            foreach (string s in liste) {
-                Console.WriteLine(s);
-            }
+            SortedList<int,int> liste = new SortedList<int,int>();
             
+            
+
+
+
 
             Console.WriteLine("fin des opérations");
             connection.Close();
@@ -136,5 +137,7 @@ namespace testconsole
 
             return rep;
         }
+
+        //public static void CreationCommandePerso(MySqlConnection connection, int[] nombrefleur, )
     }
 }
