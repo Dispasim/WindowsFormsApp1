@@ -78,5 +78,12 @@ namespace WindowsFormsApp1
             commandePerso.ShowDialog();
             this.Close();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            EspaceClient Espaceclient = new EspaceClient(connection, courriel);
+            Espaceclient.ShowDialog();
+            this.Close();
+        }
     }
 }

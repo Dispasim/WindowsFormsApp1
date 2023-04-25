@@ -13,7 +13,9 @@ namespace testconsole
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=fleurs;UID=root;PASSWORD=root;";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
-            SortedList<int,int> liste = new SortedList<int,int>();
+            //SortedList<int,int> liste = new SortedList<int,int>();
+            AccessoireCommande(connection, 7654321, true, true, true);
+            
             
             
 
@@ -138,6 +140,60 @@ namespace testconsole
             return rep;
         }
 
-        //public static void CreationCommandePerso(MySqlConnection connection, int[] nombrefleur, )
+        public static void LiaisonCommandePerso(MySqlConnection connection, int numCommande, int idFleur, int Nombre)
+        {
+            string query = "insert into commande_perso(Numero_Commande,Id_Fleur, Nombre) values(" + numCommande + "," + idFleur + "," + Nombre+");";
+            MySqlCommand command = new MySqlCommand( query, connection);
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+        }
+
+        public static void AccessoireCommande(MySqlConnection connection, int numCommande, bool Vase, bool Boite, bool Ruban)
+        {
+            string query = "insert into accessoire_commande(Vase,Boite,Ruban,Numero_Commande) values(" + Vase + "," + Boite + "," + Ruban +"," + numCommande+");";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        public static void CreationCommandePerso(MySqlConnection connection, SortedList<int, string> fleurs, bool Vase, bool Boite, bool Ruban, string adresse, string message, string Courriel, int id_magasin)
+        {
+            Random random = new Random();
+            int numerocommande = random.Next(1000000, 9999999);
+            DateTime currentDate = DateTime.Today;
+            string date = currentDate.ToString("yyyy-MM-dd");
+            string code = "VINV";
+            while (ExisteInt(connection, numerocommande, "commande", "Numero_Commande"))
+            {
+                numerocommande = random.Next(1000000, 9999999);
+            }
+            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Magasin,Commande_Perso) values(" + numerocommande + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel  + "," + id_magasin +","+ true + ");";
+            foreach (KeyValuePair<int, string> kvp in fleurs)
+            {
+                if (kvp.Value != "0")
+                {
+                    LiaisonCommandePerso(connection, numerocommande, kvp.Key, int.Parse(kvp.Value));
+                }
+
+            }
+            AccessoireCommande(connection, numerocommande, Vase, Boite, Ruban);
+
+            
+
+        }
+
     }
 }

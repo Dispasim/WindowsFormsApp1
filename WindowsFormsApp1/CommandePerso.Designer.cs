@@ -69,6 +69,16 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.boite = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.textBox13 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -441,11 +451,114 @@
             this.textBox12.TabIndex = 40;
             this.textBox12.Text = "0";
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(67, 402);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(138, 13);
+            this.label18.TabIndex = 41;
+            this.label18.Text = "Choisissez vos accessoires ";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(12, 437);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(50, 17);
+            this.checkBox1.TabIndex = 42;
+            this.checkBox1.Text = "Vase";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // boite
+            // 
+            this.boite.AutoSize = true;
+            this.boite.Location = new System.Drawing.Point(131, 437);
+            this.boite.Name = "boite";
+            this.boite.Size = new System.Drawing.Size(50, 17);
+            this.boite.TabIndex = 43;
+            this.boite.Text = "Boite";
+            this.boite.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(237, 437);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(58, 17);
+            this.checkBox2.TabIndex = 44;
+            this.checkBox2.Text = "Ruban";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 594);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(109, 42);
+            this.button1.TabIndex = 45;
+            this.button1.Text = "Retour";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(227, 594);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(109, 42);
+            this.button2.TabIndex = 46;
+            this.button2.Text = "Valider";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(60, 472);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(56, 13);
+            this.label19.TabIndex = 47;
+            this.label19.Text = "Message :";
+            this.label19.Click += new System.EventHandler(this.label19_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(131, 469);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(177, 54);
+            this.richTextBox1.TabIndex = 48;
+            this.richTextBox1.Text = "";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(9, 553);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(107, 13);
+            this.label20.TabIndex = 49;
+            this.label20.Text = "Adresse de livraison :";
+            // 
+            // textBox13
+            // 
+            this.textBox13.Location = new System.Drawing.Point(131, 553);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(177, 20);
+            this.textBox13.TabIndex = 50;
+            // 
             // CommandePerso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 559);
+            this.ClientSize = new System.Drawing.Size(358, 648);
+            this.Controls.Add(this.textBox13);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.boite);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label18);
             this.Controls.Add(this.textBox12);
             this.Controls.Add(this.textBox11);
             this.Controls.Add(this.textBox10);
@@ -538,5 +651,15 @@
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox boite;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox textBox13;
     }
 }

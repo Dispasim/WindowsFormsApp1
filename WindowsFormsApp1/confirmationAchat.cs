@@ -87,13 +87,19 @@ namespace WindowsFormsApp1
                 
                 
             }
-            magasin = int.Parse(Program.recupDonnee(connection, "Id_Magasin", "magasin", "Adresse_magasin", texteElement));
-            
-            Program.CreationCommande(connection, textBox1.Text, richTextBox1.Text, email, id, magasin);
-            EspaceClient espaceClient = new EspaceClient(connection,email);
-            espaceClient.ShowDialog();
-            this.Close();
+            if (texteElement == "")
+            {
+                MessageBox.Show("Merci de sélectionner un magasin");
+            }
+            else
+            {
+                magasin = int.Parse(Program.recupDonnee(connection, "Id_Magasin", "magasin", "Adresse_magasin", texteElement));
 
+                Program.CreationCommande(connection, textBox1.Text, richTextBox1.Text, email, id, magasin);
+                EspaceClient espaceClient = new EspaceClient(connection, email);
+                espaceClient.ShowDialog();
+                this.Close();
+            }
 
 
         }
