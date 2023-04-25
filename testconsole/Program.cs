@@ -12,7 +12,12 @@ namespace testconsole
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=fleurs;UID=root;PASSWORD=root;";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
-            Console.WriteLine(fidelite(connection, "test2"));
+            CreationClient(connection, "testfid", "", "", "", "", "", "", "", "");
+            for (int i = 0;i <= 5 ; i++)
+            {
+                CreationCommande(connection, "quelque part", "tg", "testfid", 20003, 30001);
+            }
+            Console.WriteLine(fidelite(connection, "testfid"));
             Console.WriteLine("fin des opérations");
             connection.Close();
         }
@@ -39,6 +44,61 @@ namespace testconsole
 
 
 
+
+        }
+
+        public static void CreationCommande(MySqlConnection connection, string adresse, string message, string Courriel, int id_bouquet, int id_magasin)
+        {
+
+            Random random = new Random();
+            int numerocommande = random.Next(1000000, 9999999);
+            DateTime currentDate = DateTime.Today;
+            string date = currentDate.ToString("yyyy-MM-dd");
+            string code = "VINV";
+            while (ExisteInt(connection, numerocommande, "commande", "Numero_Commande"))
+            {
+                numerocommande = random.Next(1000000, 9999999);
+            }
+            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Bouquet,Id_Magasin) values(" + numerocommande.ToString() + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_bouquet + "," + id_magasin + ");";
+            MySqlCommand command = new MySqlCommand(query, connection);
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+        }
+
+        static bool ExisteInt(MySqlConnection connection, int element, string table, string colonne)
+        {
+            bool rep = true;
+            string query = "SELECT COUNT(*) FROM " + table + " WHERE " + colonne + " = " + element;
+            MySqlCommand command = new MySqlCommand(query, connection);
+            int count = Convert.ToInt32(command.ExecuteScalar());
+            if (count == 0)
+            {
+                rep = false;
+            }
+            return rep;
+        }
+
+        public static void CreationClient(MySqlConnection connection, string Courriel, string Mdp, string Nom, string Prenom, string Telephone, string Adresse, string Numero, string dateexpiration, string cryptogramme)
+        {
+
+            string query = "INSERT INTO client(Courriel,Nom_Client,Prenom_Client,Telephone,mdp,Adresse_Facturation,Numero_carte,Date_Expiration,Cryptogramme) values('" + Courriel + "','" + Nom + "','" + Prenom + "','" + Telephone + "','" + Mdp + "','" + Adresse + "','" + Numero + "','" + dateexpiration + "','" + cryptogramme + "');";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
 
         }
     }
