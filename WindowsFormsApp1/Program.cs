@@ -558,6 +558,21 @@ namespace WindowsFormsApp1
         }
         */
 
+        public static List<string> listeCommande(MySqlConnection connection)
+        {
+            List<string> rep = new List<string>();
+            string query = "select Numero_Commande from commande";
+            MySqlCommand command = new MySqlCommand( query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                rep.Add(reader.GetString(0));
+            }
+            reader.Close();
+            command.Dispose();
+            return rep;
+        }
+
 
        
 

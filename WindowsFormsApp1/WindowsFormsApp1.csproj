@@ -97,11 +97,47 @@
     <Compile Include="CommandePerso.Designer.cs">
       <DependentUpon>CommandePerso.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConnectionAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectionAdmin.Designer.cs">
+      <DependentUpon>ConnectionAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreationCompte.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CreationCompte.Designer.cs">
       <DependentUpon>CreationCompte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EspaceAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EspaceAdmin.Designer.cs">
+      <DependentUpon>EspaceAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EspaceAdminClients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EspaceAdminClients.Designer.cs">
+      <DependentUpon>EspaceAdminClients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EspaceAdminCommande.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EspaceAdminCommande.Designer.cs">
+      <DependentUpon>EspaceAdminCommande.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EspaceAdminStats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EspaceAdminStats.Designer.cs">
+      <DependentUpon>EspaceAdminStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EspaceAdminStocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EspaceAdminStocks.Designer.cs">
+      <DependentUpon>EspaceAdminStocks.cs</DependentUpon>
     </Compile>
     <Compile Include="EspaceClient.cs">
       <SubType>Form</SubType>
@@ -144,8 +180,26 @@
     <EmbeddedResource Include="CommandePerso.resx">
       <DependentUpon>CommandePerso.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConnectionAdmin.resx">
+      <DependentUpon>ConnectionAdmin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreationCompte.resx">
       <DependentUpon>CreationCompte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EspaceAdmin.resx">
+      <DependentUpon>EspaceAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EspaceAdminClients.resx">
+      <DependentUpon>EspaceAdminClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EspaceAdminCommande.resx">
+      <DependentUpon>EspaceAdminCommande.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EspaceAdminStats.resx">
+      <DependentUpon>EspaceAdminStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EspaceAdminStocks.resx">
+      <DependentUpon>EspaceAdminStocks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EspaceClient.resx">
       <DependentUpon>EspaceClient.cs</DependentUpon>

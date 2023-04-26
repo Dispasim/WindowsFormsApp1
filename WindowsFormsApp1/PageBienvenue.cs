@@ -44,6 +44,13 @@ namespace WindowsFormsApp1
         {
             
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ConnectionAdmin connectionAdmin = new ConnectionAdmin(connection);
+            connectionAdmin.ShowDialog();
+            this.Close();
+        }
     }
     
 
