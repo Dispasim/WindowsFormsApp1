@@ -559,73 +559,7 @@ namespace WindowsFormsApp1
         */
 
 
-        public static string SommeFleur(string Gerbera, string Ginger, string Glaieul, string Marguerite, string RoseR, string RoseB, string Oiseau, string Genet, string Lys, string Alstromeria, string Orchidee, string Verdure)
-        {
-            int rep;
-            string rep1;
-            int gerbera;
-            int.TryParse(Gerbera, out gerbera);
-            int ginger;
-            int.TryParse(Ginger, out ginger);
-            int glaieul;
-            int.TryParse(Glaieul, out glaieul);
-            int marguerite;
-            int.TryParse(Marguerite, out marguerite);
-            int roseR;
-            int.TryParse(RoseR, out roseR);
-            int roseB;
-            int.TryParse(RoseB, out roseB);
-            int oiseau;
-            int.TryParse(Oiseau, out oiseau);
-            int genet;
-            int.TryParse(Genet, out genet);
-            int lys;
-            int.TryParse(Lys, out lys);
-            int alstromeria;
-            int.TryParse(Alstromeria, out alstromeria);
-            int orchidee;
-            int.TryParse(Orchidee, out orchidee);
-            int verdure;
-            int.TryParse(Verdure, out verdure);
-            rep = gerbera + ginger + glaieul + marguerite + roseR + roseB + oiseau + genet + lys + alstromeria + orchidee + verdure;
-            rep1 = rep.ToString();
-            return rep1;
-
-        }
-
-        public static string SommePrixFleur(string Gerbera, string Ginger, string Glaieul, string Marguerite, string RoseR, string RoseB, string Oiseau, string Genet, string Lys, string Alstromeria, string Orchidee, string Verdure)
-        {
-            float rep;
-            string rep1;
-            float gerbera;
-            float.TryParse(Gerbera, out gerbera);
-            float ginger;
-            float.TryParse(Ginger, out ginger);
-            float glaieul;
-            float.TryParse(Glaieul, out glaieul);
-            float marguerite;
-            float.TryParse(Marguerite, out marguerite);
-            float roseR;
-            float.TryParse(RoseR, out roseR);
-            float roseB;
-            float.TryParse(RoseB, out roseB);
-            float oiseau;
-            float.TryParse(Oiseau, out oiseau);
-            float genet;
-            float.TryParse(Genet, out genet);
-            float lys;
-            float.TryParse(Lys, out lys);
-            float alstromeria;
-            float.TryParse(Alstromeria, out alstromeria);
-            float orchidee;
-            float.TryParse(Orchidee, out orchidee);
-            float verdure;
-            float.TryParse(Verdure, out verdure);
-            rep = 5 * gerbera + 4 * ginger + glaieul + 2.25F * marguerite + 2.5F * roseR + 5 * roseB + 4 * oiseau + 3 * genet + 4 * lys + 5 * alstromeria + 3.5F * orchidee + verdure;
-            rep1 = rep.ToString();
-            return rep1;
-
-        }
+       
 
 
 
