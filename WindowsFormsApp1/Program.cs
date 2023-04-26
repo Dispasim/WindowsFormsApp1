@@ -419,13 +419,13 @@ namespace WindowsFormsApp1
             double prixMoyen = 0;
             int nombreBouquets = 0;
 
-            string query = "SELECT prix FROM bouquet";
+            string query = "SELECT Prix_Bouquet FROM bouquet";
             MySqlCommand command = new MySqlCommand(query, connection);
             MySqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
-                double prix = reader.GetDouble("prix");
+                double prix = reader.GetDouble("Prix_Bouquet");
                 prixMoyen += prix;
                 nombreBouquets++;
             }
