@@ -29,18 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.Gerbera10001 = new System.Windows.Forms.CheckBox();
-            this.Ginger10002 = new System.Windows.Forms.CheckBox();
-            this.Glaïeul10003 = new System.Windows.Forms.CheckBox();
-            this.Marguerite10004 = new System.Windows.Forms.CheckBox();
-            this.RoseRouge10005 = new System.Windows.Forms.CheckBox();
-            this.RoseBlanche10006 = new System.Windows.Forms.CheckBox();
-            this.Oiseau10007 = new System.Windows.Forms.CheckBox();
-            this.Genet10008 = new System.Windows.Forms.CheckBox();
-            this.Lys10009 = new System.Windows.Forms.CheckBox();
-            this.Alstro100010 = new System.Windows.Forms.CheckBox();
-            this.Orchi100011 = new System.Windows.Forms.CheckBox();
-            this.verdure100012 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -79,6 +67,21 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.textBox13 = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.labelprix = new System.Windows.Forms.Label();
+            this.labelqt = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -89,127 +92,6 @@
             this.label1.Size = new System.Drawing.Size(129, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Commande Personnalisée";
-            // 
-            // Gerbera10001
-            // 
-            this.Gerbera10001.AutoSize = true;
-            this.Gerbera10001.Location = new System.Drawing.Point(12, 101);
-            this.Gerbera10001.Name = "Gerbera10001";
-            this.Gerbera10001.Size = new System.Drawing.Size(64, 17);
-            this.Gerbera10001.TabIndex = 1;
-            this.Gerbera10001.Text = "Gerbera";
-            this.Gerbera10001.UseVisualStyleBackColor = true;
-            // 
-            // Ginger10002
-            // 
-            this.Ginger10002.AutoSize = true;
-            this.Ginger10002.Location = new System.Drawing.Point(12, 124);
-            this.Ginger10002.Name = "Ginger10002";
-            this.Ginger10002.Size = new System.Drawing.Size(57, 17);
-            this.Ginger10002.TabIndex = 2;
-            this.Ginger10002.Text = "Ginger";
-            this.Ginger10002.UseVisualStyleBackColor = true;
-            // 
-            // Glaïeul10003
-            // 
-            this.Glaïeul10003.AutoSize = true;
-            this.Glaïeul10003.Location = new System.Drawing.Point(12, 147);
-            this.Glaïeul10003.Name = "Glaïeul10003";
-            this.Glaïeul10003.Size = new System.Drawing.Size(60, 17);
-            this.Glaïeul10003.TabIndex = 3;
-            this.Glaïeul10003.Text = "Glaïeul";
-            this.Glaïeul10003.UseVisualStyleBackColor = true;
-            // 
-            // Marguerite10004
-            // 
-            this.Marguerite10004.AutoSize = true;
-            this.Marguerite10004.Location = new System.Drawing.Point(12, 170);
-            this.Marguerite10004.Name = "Marguerite10004";
-            this.Marguerite10004.Size = new System.Drawing.Size(76, 17);
-            this.Marguerite10004.TabIndex = 4;
-            this.Marguerite10004.Text = "Marguerite";
-            this.Marguerite10004.UseVisualStyleBackColor = true;
-            this.Marguerite10004.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
-            // 
-            // RoseRouge10005
-            // 
-            this.RoseRouge10005.AutoSize = true;
-            this.RoseRouge10005.Location = new System.Drawing.Point(12, 193);
-            this.RoseRouge10005.Name = "RoseRouge10005";
-            this.RoseRouge10005.Size = new System.Drawing.Size(86, 17);
-            this.RoseRouge10005.TabIndex = 5;
-            this.RoseRouge10005.Text = "Rose Rouge";
-            this.RoseRouge10005.UseVisualStyleBackColor = true;
-            // 
-            // RoseBlanche10006
-            // 
-            this.RoseBlanche10006.AutoSize = true;
-            this.RoseBlanche10006.Location = new System.Drawing.Point(12, 216);
-            this.RoseBlanche10006.Name = "RoseBlanche10006";
-            this.RoseBlanche10006.Size = new System.Drawing.Size(93, 17);
-            this.RoseBlanche10006.TabIndex = 6;
-            this.RoseBlanche10006.Text = "Rose Blanche";
-            this.RoseBlanche10006.UseVisualStyleBackColor = true;
-            // 
-            // Oiseau10007
-            // 
-            this.Oiseau10007.AutoSize = true;
-            this.Oiseau10007.Location = new System.Drawing.Point(12, 239);
-            this.Oiseau10007.Name = "Oiseau10007";
-            this.Oiseau10007.Size = new System.Drawing.Size(111, 17);
-            this.Oiseau10007.TabIndex = 7;
-            this.Oiseau10007.Text = "Oiseau du paradis";
-            this.Oiseau10007.UseVisualStyleBackColor = true;
-            // 
-            // Genet10008
-            // 
-            this.Genet10008.AutoSize = true;
-            this.Genet10008.Location = new System.Drawing.Point(12, 262);
-            this.Genet10008.Name = "Genet10008";
-            this.Genet10008.Size = new System.Drawing.Size(53, 17);
-            this.Genet10008.TabIndex = 8;
-            this.Genet10008.Text = "genet";
-            this.Genet10008.UseVisualStyleBackColor = true;
-            // 
-            // Lys10009
-            // 
-            this.Lys10009.AutoSize = true;
-            this.Lys10009.Location = new System.Drawing.Point(12, 285);
-            this.Lys10009.Name = "Lys10009";
-            this.Lys10009.Size = new System.Drawing.Size(42, 17);
-            this.Lys10009.TabIndex = 9;
-            this.Lys10009.Text = "Lys";
-            this.Lys10009.UseVisualStyleBackColor = true;
-            // 
-            // Alstro100010
-            // 
-            this.Alstro100010.AutoSize = true;
-            this.Alstro100010.Location = new System.Drawing.Point(12, 308);
-            this.Alstro100010.Name = "Alstro100010";
-            this.Alstro100010.Size = new System.Drawing.Size(77, 17);
-            this.Alstro100010.TabIndex = 10;
-            this.Alstro100010.Text = "Alstroméria";
-            this.Alstro100010.UseVisualStyleBackColor = true;
-            // 
-            // Orchi100011
-            // 
-            this.Orchi100011.AutoSize = true;
-            this.Orchi100011.Location = new System.Drawing.Point(12, 331);
-            this.Orchi100011.Name = "Orchi100011";
-            this.Orchi100011.Size = new System.Drawing.Size(69, 17);
-            this.Orchi100011.TabIndex = 11;
-            this.Orchi100011.Text = "Orchidée";
-            this.Orchi100011.UseVisualStyleBackColor = true;
-            // 
-            // verdure100012
-            // 
-            this.verdure100012.AutoSize = true;
-            this.verdure100012.Location = new System.Drawing.Point(12, 354);
-            this.verdure100012.Name = "verdure100012";
-            this.verdure100012.Size = new System.Drawing.Size(63, 17);
-            this.verdure100012.TabIndex = 12;
-            this.verdure100012.Text = "Verdure";
-            this.verdure100012.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -454,7 +336,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(67, 402);
+            this.label18.Location = new System.Drawing.Point(60, 421);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(138, 13);
             this.label18.TabIndex = 41;
@@ -463,7 +345,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 437);
+            this.checkBox1.Location = new System.Drawing.Point(14, 446);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(50, 17);
             this.checkBox1.TabIndex = 42;
@@ -473,7 +355,7 @@
             // boite
             // 
             this.boite.AutoSize = true;
-            this.boite.Location = new System.Drawing.Point(131, 437);
+            this.boite.Location = new System.Drawing.Point(131, 446);
             this.boite.Name = "boite";
             this.boite.Size = new System.Drawing.Size(50, 17);
             this.boite.TabIndex = 43;
@@ -483,7 +365,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(237, 437);
+            this.checkBox2.Location = new System.Drawing.Point(241, 446);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(58, 17);
             this.checkBox2.TabIndex = 44;
@@ -544,11 +426,161 @@
             this.textBox13.Size = new System.Drawing.Size(177, 20);
             this.textBox13.TabIndex = 50;
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(23, 101);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(45, 13);
+            this.label23.TabIndex = 53;
+            this.label23.Text = "Gerbera";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(23, 125);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(38, 13);
+            this.label24.TabIndex = 54;
+            this.label24.Text = "Ginger";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(23, 148);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(41, 13);
+            this.label25.TabIndex = 55;
+            this.label25.Text = "Glaïeul";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(23, 171);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(57, 13);
+            this.label26.TabIndex = 56;
+            this.label26.Text = "Marguerite";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(23, 194);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(62, 13);
+            this.label27.TabIndex = 57;
+            this.label27.Text = "Rose rouge";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(23, 217);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(76, 13);
+            this.label28.TabIndex = 58;
+            this.label28.Text = "Rose blanche ";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(23, 240);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(92, 13);
+            this.label29.TabIndex = 59;
+            this.label29.Text = "Oiseau du paradis";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(23, 263);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(36, 13);
+            this.label30.TabIndex = 60;
+            this.label30.Text = "Ganet";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(23, 286);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(23, 13);
+            this.label31.TabIndex = 61;
+            this.label31.Text = "Lys";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(23, 309);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(58, 13);
+            this.label32.TabIndex = 62;
+            this.label32.Text = "Alstroméria";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(23, 332);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(50, 13);
+            this.label33.TabIndex = 63;
+            this.label33.Text = "Orchidée";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(23, 358);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(44, 13);
+            this.label34.TabIndex = 64;
+            this.label34.Text = "Verdure";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(23, 392);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(40, 13);
+            this.label21.TabIndex = 65;
+            this.label21.Text = "Total : ";
+            // 
+            // labelprix
+            // 
+            this.labelprix.AutoSize = true;
+            this.labelprix.Location = new System.Drawing.Point(134, 392);
+            this.labelprix.Name = "labelprix";
+            this.labelprix.Size = new System.Drawing.Size(41, 13);
+            this.labelprix.TabIndex = 66;
+            this.labelprix.Text = "label22";
+            // 
+            // labelqt
+            // 
+            this.labelqt.AutoSize = true;
+            this.labelqt.Location = new System.Drawing.Point(252, 392);
+            this.labelqt.Name = "labelqt";
+            this.labelqt.Size = new System.Drawing.Size(41, 13);
+            this.labelqt.TabIndex = 67;
+            this.labelqt.Text = "label35";
+            // 
             // CommandePerso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 648);
+            this.ClientSize = new System.Drawing.Size(358, 668);
+            this.Controls.Add(this.labelqt);
+            this.Controls.Add(this.labelprix);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label34);
+            this.Controls.Add(this.label33);
+            this.Controls.Add(this.label32);
+            this.Controls.Add(this.label31);
+            this.Controls.Add(this.label30);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.label23);
             this.Controls.Add(this.textBox13);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.richTextBox1);
@@ -587,18 +619,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.verdure100012);
-            this.Controls.Add(this.Orchi100011);
-            this.Controls.Add(this.Alstro100010);
-            this.Controls.Add(this.Lys10009);
-            this.Controls.Add(this.Genet10008);
-            this.Controls.Add(this.Oiseau10007);
-            this.Controls.Add(this.RoseBlanche10006);
-            this.Controls.Add(this.RoseRouge10005);
-            this.Controls.Add(this.Marguerite10004);
-            this.Controls.Add(this.Glaïeul10003);
-            this.Controls.Add(this.Ginger10002);
-            this.Controls.Add(this.Gerbera10001);
             this.Controls.Add(this.label1);
             this.Name = "CommandePerso";
             this.Text = "CommandePerso";
@@ -611,18 +631,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox Gerbera10001;
-        private System.Windows.Forms.CheckBox Ginger10002;
-        private System.Windows.Forms.CheckBox Glaïeul10003;
-        private System.Windows.Forms.CheckBox Marguerite10004;
-        private System.Windows.Forms.CheckBox RoseRouge10005;
-        private System.Windows.Forms.CheckBox RoseBlanche10006;
-        private System.Windows.Forms.CheckBox Oiseau10007;
-        private System.Windows.Forms.CheckBox Genet10008;
-        private System.Windows.Forms.CheckBox Lys10009;
-        private System.Windows.Forms.CheckBox Alstro100010;
-        private System.Windows.Forms.CheckBox Orchi100011;
-        private System.Windows.Forms.CheckBox verdure100012;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -661,5 +669,20 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label labelprix;
+        private System.Windows.Forms.Label labelqt;
     }
 }

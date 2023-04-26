@@ -280,6 +280,7 @@ namespace WindowsFormsApp1
         public static void LiaisonCommandePerso(MySqlConnection connection, int numCommande, int idFleur, int Nombre)
         {
             string query = "insert into commande_perso(Numero_Commande,Id_Fleur, Nombre) values(" + numCommande + "," + idFleur + "," + Nombre + ");";
+            
             MySqlCommand command = new MySqlCommand(query, connection);
             try
             {
@@ -289,6 +290,7 @@ namespace WindowsFormsApp1
             {
                 Console.WriteLine(e.ToString());
             }
+            command.Dispose();
 
         }
         // donne les accessoires liés à un commande perso
@@ -304,6 +306,7 @@ namespace WindowsFormsApp1
             {
                 Console.WriteLine(e.ToString());
             }
+            command.Dispose ();
         }
         // crée la commande perso
         public static void CreationCommandePerso(MySqlConnection connection, SortedList<int, string> fleurs, bool Vase, bool Boite, bool Ruban, string adresse, string message, string Courriel, int id_magasin)
@@ -317,7 +320,7 @@ namespace WindowsFormsApp1
             {
                 numerocommande = random.Next(1000000, 9999999);
             }
-            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Magasin,Commande_Perso) values(" + numerocommande + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "," + id_magasin + "," + true + ");";
+            
             foreach (KeyValuePair<int, string> kvp in fleurs)
             {
                 if (kvp.Value != "0")
@@ -327,6 +330,18 @@ namespace WindowsFormsApp1
 
             }
             AccessoireCommande(connection, numerocommande, Vase, Boite, Ruban);
+            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Magasin,Commande_Perso) values(" + numerocommande + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_magasin + "," + true + ");";
+            
+            MySqlCommand command = new MySqlCommand(query, connection);
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
 
 
 

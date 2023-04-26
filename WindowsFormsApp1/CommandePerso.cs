@@ -45,18 +45,18 @@ namespace WindowsFormsApp1
         private void button2_Click(object sender, EventArgs e)
 
         {
-            fleurs.Add(10001, Gerbera10001.Text);
-            fleurs.Add(10002, Ginger10002.Text);
-            fleurs.Add(10003, Glaïeul10003.Text);
-            fleurs.Add(10004, Marguerite10004.Text);
-            fleurs.Add(10005, RoseRouge10005.Text);
-            fleurs.Add(10006, RoseBlanche10006.Text);
-            fleurs.Add(10007, Oiseau10007.Text);
-            fleurs.Add(10008, Genet10008.Text);
-            fleurs.Add(10009, Lys10009.Text);
-            fleurs.Add(100010, Alstro100010.Text);
-            fleurs.Add(100011, Orchi100011.Text);
-            fleurs.Add(100012, verdure100012.Text);
+            fleurs.Add(10001, textBox1.Text);
+            fleurs.Add(10002, textBox2.Text);
+            fleurs.Add(10003, textBox3.Text);
+            fleurs.Add(10004, textBox4.Text);
+            fleurs.Add(10005, textBox5.Text);
+            fleurs.Add(10006, textBox6.Text);
+            fleurs.Add(10007, textBox7.Text);
+            fleurs.Add(10008, textBox8.Text);
+            fleurs.Add(10009, textBox9.Text);
+            fleurs.Add(100010, textBox10.Text);
+            fleurs.Add(100011, textBox11.Text);
+            fleurs.Add(100012, textBox12.Text);
             bool Vase = checkBox1.Checked;
             bool Boite = boite.Checked;
             bool Ruban = checkBox2.Checked;
