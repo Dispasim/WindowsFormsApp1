@@ -346,6 +346,45 @@ namespace WindowsFormsApp1
 
 
         }
+        public static double CalculerPrixMoyenBouquet(MySqlConnection connection)
+        {
+            double prixMoyen = 0;
+            int nombreBouquets = 0;
+
+            string query = "SELECT prix FROM bouquet";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                double prix = reader.GetDouble("prix");
+                prixMoyen += prix;
+                nombreBouquets++;
+            }
+
+            reader.Close();
+            command.Dispose();
+
+            if (nombreBouquets > 0) // surtout !=0
+            {
+                    prixMoyen = prixMoyen / nombreBouquets; 
+            }         
+            return prixMoyen;          
+        }
+
+        // à écrire dans le main
+        /*
+        double prixMoyen = CalculerPrixMoyenBouquet();
+        if (nombreBouquets > 0)
+        {
+            Console.WriteLine("Le prix moyen d'un bouquet est : " + prixMoyen);
+        }
+        else
+        {
+            Console.WriteLine("Aucun bouquet trouvé dans la base de données.");
+        }
+        */
+
 
 
 
