@@ -88,8 +88,17 @@ namespace WindowsFormsApp1
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            labelqt.Text = Program.SommeFleur(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text, textBox7.Text, textBox8.Text, textBox9.Text, textBox10.Text, textBox11.Text, textBox12.Text);
-            labelprix.Text = Program.SommePrixFleur(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text, textBox7.Text, textBox8.Text, textBox9.Text, textBox10.Text, textBox11.Text, textBox12.Text) + "€";
+            if (DateTime.Now.Month != 6 && DateTime.Now.Month != 7 && DateTime.Now.Month != 8 && DateTime.Now.Month != 9 && DateTime.Now.Month != 10 && DateTime.Now.Month != 11 && textBox3.Text != "0")
+            {
+                MessageBox.Show("Cette fleur est disponible de juillet à novembre.");
+                textBox3.Text = "0";
+            }
+
+            else 
+            {
+                labelqt.Text = Program.SommeFleur(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text, textBox7.Text, textBox8.Text, textBox9.Text, textBox10.Text, textBox11.Text, textBox12.Text);
+                labelprix.Text = Program.SommePrixFleur(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text, textBox7.Text, textBox8.Text, textBox9.Text, textBox10.Text, textBox11.Text, textBox12.Text) + "€";
+            }
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)

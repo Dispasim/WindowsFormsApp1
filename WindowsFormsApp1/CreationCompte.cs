@@ -48,9 +48,13 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Il existe déjà un compte lié à cet email");
             }
+            else if (!int.TryParse(textBoxnumero.Text, out _)|| !int.TryParse(textBoxtelephone.Text, out _)||!int.TryParse(textBoxDateexpiration.Text, out _)|| !int.TryParse(textBoxcrypto.Text, out _))
+            {
+                MessageBox.Show("Le numéro de téléphone, le numéro de carte bleue, la date d'expiration et le cryptogramme doivent etre des nombres entiers.");
+            }
             else
             {
-                Program.CreationClient(connection, textBoxEmail.Text, textBoxmdp.Text, textBoxnom.Text, textBoxprenom.Text, textBoxnumero.Text, textBoxadresse.Text, textBoxnumero.Text, textBoxDateexpiration.Text, textBoxcrypto.Text);
+                Program.CreationClient(connection, textBoxEmail.Text, textBoxmdp.Text, textBoxnom.Text, textBoxprenom.Text, textBoxtelephone.Text, textBoxadresse.Text, textBoxnumero.Text, textBoxDateexpiration.Text, textBoxcrypto.Text);
                 EspaceClient espaceClient = new EspaceClient(connection, textBoxEmail.Text);
                 espaceClient.ShowDialog();
                 this.Close();

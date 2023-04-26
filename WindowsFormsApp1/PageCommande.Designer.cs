@@ -73,7 +73,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(162, 133);
+            this.button3.Location = new System.Drawing.Point(155, 133);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(143, 68);
@@ -84,7 +84,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(162, 62);
+            this.button4.Location = new System.Drawing.Point(155, 62);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(143, 68);
@@ -95,7 +95,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(309, 62);
+            this.button5.Location = new System.Drawing.Point(302, 62);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(143, 68);
@@ -106,7 +106,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(309, 133);
+            this.button6.Location = new System.Drawing.Point(302, 133);
             this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(143, 68);
@@ -129,7 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 292);
+            this.ClientSize = new System.Drawing.Size(454, 292);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);

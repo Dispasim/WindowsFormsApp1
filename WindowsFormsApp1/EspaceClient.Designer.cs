@@ -37,17 +37,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(331, 43);
+            this.label1.Location = new System.Drawing.Point(221, 28);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 20);
+            this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Bienvenue ";
             // 
             // buttoncommande
             // 
-            this.buttoncommande.Location = new System.Drawing.Point(271, 116);
+            this.buttoncommande.Location = new System.Drawing.Point(181, 75);
+            this.buttoncommande.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttoncommande.Name = "buttoncommande";
-            this.buttoncommande.Size = new System.Drawing.Size(221, 77);
+            this.buttoncommande.Size = new System.Drawing.Size(147, 50);
             this.buttoncommande.TabIndex = 1;
             this.buttoncommande.Text = "Commander";
             this.buttoncommande.UseVisualStyleBackColor = true;
@@ -55,18 +57,21 @@
             // 
             // buttonsuivi
             // 
-            this.buttonsuivi.Location = new System.Drawing.Point(271, 234);
+            this.buttonsuivi.Location = new System.Drawing.Point(181, 152);
+            this.buttonsuivi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonsuivi.Name = "buttonsuivi";
-            this.buttonsuivi.Size = new System.Drawing.Size(221, 77);
+            this.buttonsuivi.Size = new System.Drawing.Size(147, 50);
             this.buttonsuivi.TabIndex = 2;
             this.buttonsuivi.Text = "Suivi commande";
             this.buttonsuivi.UseVisualStyleBackColor = true;
+            this.buttonsuivi.Click += new System.EventHandler(this.buttonsuivi_Click);
             // 
             // buttondeco
             // 
-            this.buttondeco.Location = new System.Drawing.Point(271, 352);
+            this.buttondeco.Location = new System.Drawing.Point(181, 229);
+            this.buttondeco.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttondeco.Name = "buttondeco";
-            this.buttondeco.Size = new System.Drawing.Size(221, 77);
+            this.buttondeco.Size = new System.Drawing.Size(147, 50);
             this.buttondeco.TabIndex = 3;
             this.buttondeco.Text = "Déconnection";
             this.buttondeco.UseVisualStyleBackColor = true;
@@ -74,13 +79,14 @@
             // 
             // EspaceClient
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 465);
+            this.ClientSize = new System.Drawing.Size(533, 302);
             this.Controls.Add(this.buttondeco);
             this.Controls.Add(this.buttonsuivi);
             this.Controls.Add(this.buttoncommande);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "EspaceClient";
             this.Text = "EspaceClient";
             this.Load += new System.EventHandler(this.EspaceClient_Load);

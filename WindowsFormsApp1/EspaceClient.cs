@@ -40,5 +40,12 @@ namespace WindowsFormsApp1
             pageCommande.ShowDialog();
             this.Close();
         }
+
+        private void buttonsuivi_Click(object sender, EventArgs e)
+        {
+            SuiviCommande suiviCommande = new SuiviCommande(connection, courriel);
+            suiviCommande.ShowDialog();
+            this.Close();
+        }
     }
 }

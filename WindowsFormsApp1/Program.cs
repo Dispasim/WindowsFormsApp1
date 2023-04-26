@@ -315,7 +315,7 @@ namespace WindowsFormsApp1
             int numerocommande = random.Next(1000000, 9999999);
             DateTime currentDate = DateTime.Today;
             string date = currentDate.ToString("yyyy-MM-dd");
-            string code = "VINV";
+            string code = "CPAV";
             while (ExisteInt(connection, numerocommande, "commande", "Numero_Commande"))
             {
                 numerocommande = random.Next(1000000, 9999999);
@@ -414,6 +414,111 @@ namespace WindowsFormsApp1
 
         }
 
+        // format : select donnee from table where colonne = "element"
+        public static List<string> listDonnee(MySqlConnection connection, string donnee, string table, string colonne, string element)
+        {
+            List<string> rep = new List<string>();
+            string query = "SELECT " + donnee + " from " + table + " where " + colonne + " = '" + element + "';";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                rep.Add(reader.GetString(0));
+            }
+            reader.Close();
+            command.Dispose();
+
+            return rep;
+        }
+        //Donne si une commande est personnalisée
+        public static bool estPerso(MySqlConnection connection, string numeroCommande)
+        {
+            string query = "select Commande_Perso from commande where Numero_Commande = " + numeroCommande + ";";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            bool rep = (bool)command.ExecuteScalar();
+            return rep;
+        }
+        //donne le bouquet lié à un numéro de commande
+        public static string nomBouquetCommande(MySqlConnection connection, string numeroCommande)
+        {
+            string rep;
+            string query = "select Nom_Bouquet from bouquet,commande where commande.Id_Bouquet=bouquet.Id_Bouquet and commande.Numero_Commande = '" + numeroCommande + "';";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            rep = (string)command.ExecuteScalar();
+            return rep;
+        }
+
+        public static string adresseMagasinCommande(MySqlConnection connection, string numeroCommande)
+        {
+            string rep;
+            string query = "select Adresse_magasin from magasin,commande where commande.Id_Magasin=magasin.Id_Magasin and commande.Numero_Commande = '" + numeroCommande + "';";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            rep = (string)command.ExecuteScalar();
+            return rep;
+        }
+
+        public static List<string> contenuStandard(MySqlConnection connection, string Id_Bouquet)
+        {
+            List<string> rep = new List<string>();
+            string query = "select Nom_Fleur from fleur,compose where fleur.Id_Fleur=compose.Id_Fleur and compose.Id_Bouquet = " + Id_Bouquet + ";";
+            
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                rep.Add(reader.GetString(0));
+            }
+            reader.Close();
+            command.Dispose();
+
+            return rep;
+        }
+
+        public static List<string> contenuPerso(MySqlConnection connection, string Numero_Commande)
+        {
+            List<string> rep = new List<string>();
+            bool rep1;
+            string query = "select Nom_Fleur from fleur, commande_perso where fleur.Id_fleur = commande_perso.Id_Fleur and commande_perso.Numero_Commande = " + Numero_Commande + ";";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                rep.Add(reader.GetString(0));
+            }
+            reader.Close();
+            command.Dispose();
+            query = "select Vase from accessoire_commande where Numero_Commande =" + Numero_Commande + ";";
+            MySqlCommand command1 = new MySqlCommand(query, connection);
+            rep1 = (bool)command1.ExecuteScalar();
+
+            if (rep1)
+            {
+                rep.Add("Vase");
+            }
+            command1.Dispose();
+
+            query = "select Boite from accessoire_commande where Numero_Commande =" + Numero_Commande + ";";
+            MySqlCommand command2 = new MySqlCommand(query, connection);
+            rep1 = (bool)command2.ExecuteScalar();
+
+            if (rep1)
+            {
+                rep.Add("Boite");
+            }
+            command2.Dispose();
+
+
+            query = "select Ruban from accessoire_commande where Numero_Commande =" + Numero_Commande + ";";
+            MySqlCommand command3 = new MySqlCommand(query, connection);
+            rep1 = (bool)command3.ExecuteScalar();
+
+            if (rep1)
+            {
+                rep.Add("Ruban");
+            }
+            command3.Dispose();
+            return rep;
+        }
 
 
 

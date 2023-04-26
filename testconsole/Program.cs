@@ -14,7 +14,8 @@ namespace testconsole
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
             //SortedList<int,int> liste = new SortedList<int,int>();
-            AccessoireCommande(connection, 7654321, true, true, true);
+            Console.WriteLine(nomBouquetCommande(connection, "1000000"));
+            
             
             
             
@@ -175,7 +176,7 @@ namespace testconsole
             int numerocommande = random.Next(1000000, 9999999);
             DateTime currentDate = DateTime.Today;
             string date = currentDate.ToString("yyyy-MM-dd");
-            string code = "VINV";
+            string code = "CPAV";
             while (ExisteInt(connection, numerocommande, "commande", "Numero_Commande"))
             {
                 numerocommande = random.Next(1000000, 9999999);
@@ -258,6 +259,55 @@ namespace testconsole
             return rep;
 
         }
+        // format : select donnee from table where colonne = "element"
+        public static List<string> listDonnee(MySqlConnection connection, string donnee, string table, string colonne,string element)
+        {
+            List<string> rep = new List<string>();
+            string query = "SELECT " + donnee + "from " + table + " where" + colonne + " = '" + element + "';";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                rep.Add(reader.GetString(0));
+            }
+            reader.Close();
+            command.Dispose();
 
+            return rep;
+        }
+        
+        public static bool estPerso(MySqlConnection connection, string numeroCommande)
+        {
+            string query = "select Commande_Perso from commande where Numero_Commande = " + numeroCommande + ";";
+            MySqlCommand command = new MySqlCommand( query, connection);
+            bool rep = (bool)command.ExecuteScalar();
+            return rep;
+        }
+
+        public static string nomBouquetCommande(MySqlConnection connection, string numeroCommande)
+        {
+            string rep;
+            string query = "select Nom_Bouquet from bouquet,commande where commande.Id_Bouquet=bouquet.Id_Bouquet and commande.Numero_Commande = '" + numeroCommande + "';";
+            Console.WriteLine(query);
+            MySqlCommand command = new MySqlCommand( query, connection);
+            rep = (string)command.ExecuteScalar();
+            return rep;
+        }
+
+        public static List<string> contenuStandard(MySqlConnection connection,string Id_Bouquet)
+        {
+            List<string> rep = new List<string>();
+            string query = "select Nom_Fleur from fleur,compose where fleur.Id_Fleur=compose.Id_fleur and compose.Id_Bouquet = " + Id_Bouquet + ";";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                rep.Add(reader.GetString(0));
+            }
+            reader.Close();
+            command.Dispose();
+
+            return rep;
+        }
     }
 }
