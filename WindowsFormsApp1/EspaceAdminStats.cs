@@ -22,7 +22,54 @@ namespace WindowsFormsApp1
 
         private void EspaceAdminStats_Load(object sender, EventArgs e)
         {
+            
+           
+            
+            
+            
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EspaceAdmin espaceAdmin = new EspaceAdmin(connection);
+            espaceAdmin.ShowDialog();
+            this.Close();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Valider_Click(object sender, EventArgs e)
+        {
+            string element = listBox1.SelectedItem.ToString();
+            
+            if (element == "Exporter les clients aillant commandé plusieurs fois le mois précédent.")
+            {
+                Program.exportxml(connection);
+
+            }
+            else if (element == "Exporter les clients n'aillant pas commandé depuis plus de 6 mois.")
+            {
+                Program.exportjson(connection);
+
+            }
+            else if (element == "Bouquet standard le plus acheté.")
+            {
+                MessageBox.Show(Program.meilleurBouquet(connection));
+
+            }
+            else if (element == "Meilleur client du mois.")
+            {
+                MessageBox.Show(Program.meilleurClientMois(connection));
+
+            }
+            else if (element == "Meilleur client de l'année.")
+            {
+                MessageBox.Show(Program.meilleurClientAnnee(connection));
+
+            }
         }
     }
 }

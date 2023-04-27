@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using Formatting = Newtonsoft.Json.Formatting;
 //using Newtonsoft.Json;
 //using static System.Net.Mime.MediaTypeNames;
 //using Formatting = Newtonsoft.Json.Formatting;
@@ -170,7 +172,7 @@ namespace WindowsFormsApp1
                 }
 
             }
-            document.Save("C:\\Users\\Eliot\\Downloads\\clients.xml");
+            document.Save(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\clients.xml");
 
 
 
@@ -240,8 +242,10 @@ namespace WindowsFormsApp1
             }
         }
 
-        //prend un paramètre un cloient et renvoie 0.85 s'il a plus de 5 commandes en moyenne, 0.95 s'il en a plus de 1 mais moins de 5 et 1 sinon.
         
+
+        //prend un paramètre un cloient et renvoie 0.85 s'il a plus de 5 commandes en moyenne, 0.95 s'il en a plus de 1 mais moins de 5 et 1 sinon.
+
         public static float fidelite(MySqlConnection connection, string courriel)
         {
             float rep = 1;
@@ -761,6 +765,69 @@ namespace WindowsFormsApp1
             command.Dispose();
             return rep;
         }
+
+        public static void exportjson(MySqlConnection connection)
+        {
+            // Connexion à la base de données SQL
+            string query = "SELECT * FROM client WHERE Courriel NOT IN (SELECT Courriel FROM commande WHERE date_Commande >= DATE_SUB(NOW(), INTERVAL 6 MONTH));";
+            MySqlCommand command = new MySqlCommand(query, connection);
+
+            MySqlDataReader clients = command.ExecuteReader();
+
+            // Création d'une liste pour stocker les clients
+            List<Client> liste_clients = new List<Client>();
+
+            // Parcours des résultats de la requête SQL
+            while (clients.Read())
+            {
+                Client client = new Client();
+                client.Courriel = Convert.ToString(clients["Courriel"]);
+                liste_clients.Add(client);
+            }
+            clients.Close();
+
+            // Sérialisation de la liste de clients en JSON
+            string json = JsonConvert.SerializeObject(liste_clients, Formatting.Indented);
+
+            string outputFilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\myJsonFile.json";
+
+            // Écriture du JSON dans le fichier de sortie
+            System.IO.File.WriteAllText(outputFilePath, json);
+        }
+
+        public static string meilleurClientMois(MySqlConnection connection)
+        {
+            string rep;
+            string query = "select Courriel from commande WHERE month(date_Commande) = month(CURDATE()) group by courriel order by count(*) desc limit 1;";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            rep = command.ExecuteScalar().ToString();
+            return rep;
+        }
+
+        public static string meilleurClientAnnee(MySqlConnection connection)
+        {
+            string rep;
+            string query = "select Courriel from commande WHERE year(date_Commande) = year(CURDATE()) group by courriel order by count(*) desc limit 1;";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            rep = command.ExecuteScalar().ToString();
+            return rep;
+        }
+
+        public static string meilleurBouquet(MySqlConnection connection)
+        {
+            string rep;
+            string query = "select Id_Bouquet from commande where Id_Bouquet is not null group by Id_Bouquet order by count(*) desc limit 1;";
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            string query1 = "select Nom_Bouquet from bouquet where Id_Bouquet =" + command.ExecuteScalar().ToString() + ";";
+            MySqlCommand command1 = new MySqlCommand(query1, connection);
+            rep = command1.ExecuteScalar().ToString();
+            return rep;
+        }
+
+
+
+
 
 
 

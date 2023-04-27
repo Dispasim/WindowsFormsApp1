@@ -17,9 +17,10 @@ namespace testconsole
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
             //SortedList<int,int> liste = new SortedList<int,int>();
-            Console.WriteLine(fidelite(connection, "test2"));
+            
+            Console.WriteLine(meilleurClientMois(connection));
 
-            exportjson(connection, "C:\\Users\\Kyllian\\OneDrive\\Documents\\Bdd_projet\\output.json");
+
 
 
 
@@ -342,7 +343,7 @@ namespace testconsole
         }
 
 
-        public static void exportjson(MySqlConnection connection, string outputFilePath)
+        public static void exportjson(MySqlConnection connection)
         {
             // Connexion à la base de données SQL
             string query = "SELECT * FROM client WHERE Courriel NOT IN (SELECT Courriel FROM commande WHERE date_Commande >= DATE_SUB(NOW(), INTERVAL 6 MONTH));";
@@ -360,9 +361,12 @@ namespace testconsole
                 client.Courriel = Convert.ToString(clients["Courriel"]);
                 liste_clients.Add(client);
             }
+            clients.Close();
 
             // Sérialisation de la liste de clients en JSON
             string json = JsonConvert.SerializeObject(liste_clients, Formatting.Indented);
+
+            string outputFilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\myJsonFile.json";
 
             // Écriture du JSON dans le fichier de sortie
             System.IO.File.WriteAllText(outputFilePath, json);
@@ -381,6 +385,66 @@ namespace testconsole
                 Courriel = courriel;
             }
         }
+
+        public static void exportxml(MySqlConnection connection)
+        {
+
+            string query = "SELECT client.Courriel FROM fleurs.commande inner join fleurs.client on commande.Courriel = client.Courriel where commande.Date_Commande >= DATE_SUB(NOW(), INTERVAL 1 MONTH) group by commande.Courriel having count(*) > 1;";
+            MySqlCommand command = new MySqlCommand(query, connection);
+
+            MySqlDataReader clients = command.ExecuteReader();
+
+            XmlDocument document = new XmlDocument();
+            XmlElement rootelement = document.CreateElement("clients");
+            document.AppendChild(rootelement);
+
+            while (clients.Read())
+            {
+                for (int i = 0; i < clients.FieldCount; i++)
+                {
+                    XmlElement clientElement = document.CreateElement("client");
+                    clientElement.SetAttribute("Courriel", clients.GetValue(i).ToString());
+                    rootelement.AppendChild(clientElement);
+
+                }
+
+            }
+            document.Save(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\clients.xml");
+
+
+
+        }
+
+        public static string meilleurClientMois(MySqlConnection connection)
+        {
+            string rep;
+            string query = "select Courriel from commande WHERE month(date_Commande) = month(CURDATE()) group by courriel order by count(*) desc limit 1;";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            rep = command.ExecuteScalar().ToString();
+            return rep;
+        }
+
+        public static string meilleurClientAnnee(MySqlConnection connection)
+        {
+            string rep;
+            string query = "select Courriel from commande WHERE year(date_Commande) = year(CURDATE()) group by courriel order by count(*) desc limit 1;";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            rep = command.ExecuteScalar().ToString();
+            return rep;
+        }
+
+        public static string meilleurBouquet(MySqlConnection connection)
+        {
+            string rep;
+            string query = "select Id_Bouquet from commande where Id_Bouquet is not null group by Id_Bouquet order by count(*) desc limit 1;";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            rep = command.ExecuteScalar().ToString();
+            return rep;
+        }
+
+
+
+
 
 
     }

@@ -41,9 +41,10 @@ namespace WindowsFormsApp1
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string fleur = listBox1.SelectedItem as string;
+            
             label3.Text = Program.recupDonnee(connection, "Stock", "fleur", "Nom_Fleur", fleur);
             label5.Text = Program.recupDonnee(connection, "Prix_Fleur", "fleur", "Nom_Fleur", fleur) + " €";
-            label7.Text = Program.recupDonnee(connection, "Disponibilité", "fleur", "Nom_Fleur", fleur);
+            label7.Text = Program.recupDonnee(connection, "Disponibilite", "fleur", "Nom_Fleur", fleur);
         }
     }
 }
