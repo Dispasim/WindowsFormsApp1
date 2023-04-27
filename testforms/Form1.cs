@@ -12,6 +12,7 @@ namespace testforms
 {
     public partial class Form1 : Form
     {
+        private DateTime date;
         public Form1()
         {
             InitializeComponent();
@@ -19,7 +20,13 @@ namespace testforms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            date = dateTimePicker1.Value;
+            MessageBox.Show(date - DateTime.Today);
         }
     }
 }

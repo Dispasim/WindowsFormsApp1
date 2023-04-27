@@ -14,7 +14,8 @@ namespace testconsole
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
             //SortedList<int,int> liste = new SortedList<int,int>();
-            Console.WriteLine(nomBouquetCommande(connection, "1000000"));
+            LiaisonCommandePerso(connection, 1000000, 10001);
+            
             
             
             
@@ -308,6 +309,21 @@ namespace testconsole
             command.Dispose();
 
             return rep;
+        }
+
+        public static void LiaisonCommandePerso(MySqlConnection connection, int numcommande, int idFleur)
+        {
+            string query = "insert into commande_perso(Numero_Commande,Id_Fleur) values(" + numcommande + "," + idFleur + ");";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            command.Dispose();
         }
     }
 }

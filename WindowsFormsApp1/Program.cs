@@ -107,19 +107,32 @@ namespace WindowsFormsApp1
         }
 
         //Méthode qui crée une commande
-        public static void CreationCommande(MySqlConnection connection, string adresse, string message, string Courriel, int id_bouquet, int id_magasin)
+        public static void CreationCommande(MySqlConnection connection, string adresse, string message, string Courriel, int id_bouquet, int id_magasin,DateTime dateLivraison)
         {
 
             Random random = new Random();
             int numerocommande = random.Next(1000000, 9999999);
             DateTime currentDate = DateTime.Today;
+            if ((dateLivraison - currentDate).Days < 1)
+            {
+                throw new ArgumentException("Date invalide");
+            }
+            string datelivraison = dateLivraison.ToString("yyyy-MM-dd");
             string date = currentDate.ToString("yyyy-MM-dd");
-            string code = "VINV";
+            string code ;
+            if ((dateLivraison - currentDate).Days < 3)
+            {
+                code = "VINV";
+            }
+            else
+            {
+                code = "CC";
+            }
             while (ExisteInt(connection, numerocommande, "commande", "Numero_Commande"))
             {
                 numerocommande = random.Next(1000000, 9999999);
             }
-            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Bouquet,Id_Magasin) values(" + numerocommande.ToString() + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_bouquet + "," + id_magasin + ");";
+            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Bouquet,Id_Magasin,Date_Livraison) values(" + numerocommande.ToString() + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_bouquet + "," + id_magasin + ",date('" + datelivraison + "'));";
             MySqlCommand command = new MySqlCommand(query, connection);
 
             try
@@ -293,6 +306,21 @@ namespace WindowsFormsApp1
             command.Dispose();
 
         }
+        // crée la liaison entre une commande perso et les fleurs sans quatité
+        public static void LiaisonCommandePerso(MySqlConnection connection, int numcommande, int idFleur)
+        {
+            string query = "insert into commande_perso(Numero_Commande,Id_Fleur) values(" + numcommande + "," + idFleur + ");";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            command.Dispose();
+        }
         // donne les accessoires liés à un commande perso
         public static void AccessoireCommande(MySqlConnection connection, int numCommande, bool Vase, bool Boite, bool Ruban)
         {
@@ -309,29 +337,102 @@ namespace WindowsFormsApp1
             command.Dispose ();
         }
         // crée la commande perso
-        public static void CreationCommandePerso(MySqlConnection connection, SortedList<int, string> fleurs, bool Vase, bool Boite, bool Ruban, string adresse, string message, string Courriel, int id_magasin)
+        public static void CreationCommandePerso(MySqlConnection connection, SortedList<int, string> fleurs, bool Vase, bool Boite, bool Ruban, string adresse, string message, string Courriel, int id_magasin, DateTime dateLivraison, string indication)
         {
             Random random = new Random();
             int numerocommande = random.Next(1000000, 9999999);
             DateTime currentDate = DateTime.Today;
+            string indication1 = indication;
+            if ((dateLivraison - currentDate).Days < 1)
+            {
+                throw new ArgumentException("Date invalide");
+            }
             string date = currentDate.ToString("yyyy-MM-dd");
-            string code = "CPAV";
+            string datelivraison = dateLivraison.ToString("yyyy-MM-dd");
+            string code;
+            if ((dateLivraison - currentDate).Days < 3)
+            {
+                code = "CPAV";
+            }
+            else
+            {
+                code = "CC";
+            }
+
+            
+
             while (ExisteInt(connection, numerocommande, "commande", "Numero_Commande"))
             {
                 numerocommande = random.Next(1000000, 9999999);
             }
-            
-            foreach (KeyValuePair<int, string> kvp in fleurs)
+            AccessoireCommande(connection, numerocommande, Vase, Boite, Ruban);
+            if (indication1 == "")
             {
-                if (kvp.Value != "0")
+                indication = "pas d'indication";
+            }
+            
+                foreach (KeyValuePair<int, string> kvp in fleurs)
                 {
-                    LiaisonCommandePerso(connection, numerocommande, kvp.Key, int.Parse(kvp.Value));
+                    if (kvp.Value != "0")
+                    {
+                        LiaisonCommandePerso(connection, numerocommande, kvp.Key, int.Parse(kvp.Value));
+                    }
+
                 }
 
+            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Magasin,Date_Livraison,Commande_Perso,Indication) values(" + numerocommande + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_magasin + ",date('" + datelivraison + "')," + true + ",'" + indication + "');";
+            
+            
+            MySqlCommand command = new MySqlCommand(query, connection);
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+
+
+        }
+        // creation commande perso si y'a pas de quantité de fleur 
+        public static void creationCommandePerso1(MySqlConnection connection, List<int> fleurs, bool Vase, bool Boite, bool Ruban, string adresse, string message, string Courriel, int id_magasin, DateTime dateLivraison, string indication)
+        {
+            Random random = new Random();
+            int numerocommande = random.Next(1000000, 9999999);
+            DateTime currentDate = DateTime.Today;
+            string indication1 = indication;
+            if ((dateLivraison - currentDate).Days < 1)
+            {
+                throw new ArgumentException("Date invalide");
+            }
+            string date = currentDate.ToString("yyyy-MM-dd");
+            string datelivraison = dateLivraison.ToString("yyyy-MM-dd");
+            string code;
+            if ((dateLivraison - currentDate).Days < 3)
+            {
+                code = "CPAV";
+            }
+            else
+            {
+                code = "CC";
+            }
+            while (ExisteInt(connection, numerocommande, "commande", "Numero_Commande"))
+            {
+                numerocommande = random.Next(1000000, 9999999);
             }
             AccessoireCommande(connection, numerocommande, Vase, Boite, Ruban);
-            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Magasin,Commande_Perso) values(" + numerocommande + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_magasin + "," + true + ");";
-            
+            if (indication1 == "")
+            {
+                indication = "pas d'indication";
+            }
+            foreach (int fleur in fleurs)
+            {
+                LiaisonCommandePerso1(connection, numerocommande, fleur);
+            }
+            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Magasin,Date_Livraison,Commande_Perso,Indication) values(" + numerocommande + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_magasin + ",date('" + datelivraison + "')," + true + ",'" + indication + "');";
             MySqlCommand command = new MySqlCommand(query, connection);
 
             try
@@ -572,9 +673,24 @@ namespace WindowsFormsApp1
             command.Dispose();
             return rep;
         }
+        // lie les fleurs et les commandes perso mais sans quantité
+        public static void LiaisonCommandePerso1(MySqlConnection connection, int numcommande, int idFleur)
+        {
+            string query = "insert into commande_perso(Numero_Commande,Id_Fleur) values(" + numcommande + "," + idFleur + ");";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            command.Dispose();
+        }
 
 
-       
+
 
 
 

@@ -117,4 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Vous pouvez choisir une quantité exacte, auquel cas
+ il vous suffit d'entrer la quantité de fleurs que vous 
+voulez. Sinon vous pouvez décocher l'option 
+"quantité exacte", cocher les fleurs que 
+vous voulez et donner un décription générale en
+plus de votre budget dans le cadre ci-dessous. 
+Vous pouvez aussi nous donner des indications 
+générales,Notre concepteur en prendra compte.
+</value>
+  </data>
 </root>

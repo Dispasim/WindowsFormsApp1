@@ -19,6 +19,7 @@ namespace WindowsFormsApp1
         private string email;
         private int id;
         private int magasin;
+        private DateTime datelivraison;
         
         
         public confirmationAchat(MySqlConnection _connection, string Email, int idBouquet)
@@ -80,25 +81,33 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string texteElement="";
-            foreach (object itemChecked in checkedListBox1.CheckedItems)
+            DateTime dateLivraison = dateTimePicker1.Value;
+            if ((dateLivraison - DateTime.Today).Days < 1)
             {
-                texteElement = itemChecked.ToString();
-                
-                
-            }
-            if (texteElement == "")
-            {
-                MessageBox.Show("Merci de sélectionner un magasin");
+                MessageBox.Show("Merci de séléectionner une date valide");
             }
             else
             {
-                magasin = int.Parse(Program.recupDonnee(connection, "Id_Magasin", "magasin", "Adresse_magasin", texteElement));
+                string texteElement = "";
+                foreach (object itemChecked in checkedListBox1.CheckedItems)
+                {
+                    texteElement = itemChecked.ToString();
 
-                Program.CreationCommande(connection, textBox1.Text, richTextBox1.Text, email, id, magasin);
-                EspaceClient espaceClient = new EspaceClient(connection, email);
-                espaceClient.ShowDialog();
-                this.Close();
+
+                }
+                if (texteElement == "")
+                {
+                    MessageBox.Show("Merci de sélectionner un magasin");
+                }
+                else
+                {
+                    magasin = int.Parse(Program.recupDonnee(connection, "Id_Magasin", "magasin", "Adresse_magasin", texteElement));
+
+                    Program.CreationCommande(connection, textBox1.Text, richTextBox1.Text, email, id, magasin,dateLivraison);
+                    EspaceClient espaceClient = new EspaceClient(connection, email);
+                    espaceClient.ShowDialog();
+                    this.Close();
+                }
             }
 
 
