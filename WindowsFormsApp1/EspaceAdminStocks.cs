@@ -22,7 +22,28 @@ namespace WindowsFormsApp1
 
         private void EspaceAdminStocks_Load(object sender, EventArgs e)
         {
+            List<string> fleurs = new List<string>();
+            fleurs = Program.listeFleur(connection);
+            foreach (string fleur in fleurs)
+            {
+                listBox1.Items.Add(fleur);
+            }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EspaceAdmin espaceAdmin = new EspaceAdmin(connection);
+            espaceAdmin.ShowDialog();
+            this.Close();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string fleur = listBox1.SelectedItem as string;
+            label3.Text = Program.recupDonnee(connection, "Stock", "fleur", "Nom_Fleur", fleur);
+            label5.Text = Program.recupDonnee(connection, "Prix_Fleur", "fleur", "Nom_Fleur", fleur) + " €";
+            label7.Text = Program.recupDonnee(connection, "Disponibilité", "fleur", "Nom_Fleur", fleur);
         }
     }
 }

@@ -747,6 +747,23 @@ namespace WindowsFormsApp1
             return rep;
         }
 
+        //Renvoie la liste des noms des fleurs
+
+        public static List<string> listeFleur(MySqlConnection connection)
+        {
+            List <string> rep = new List<string>();
+            string query = "select Nom_Fleur from fleur;";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                rep.Add(reader.GetString(0));
+            }
+            reader.Close();
+            command.Dispose();
+            return rep;
+        }
+
 
 
 
