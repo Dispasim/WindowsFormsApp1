@@ -201,11 +201,10 @@ namespace WindowsFormsApp1
 
         //Méthode pour exporter en json les clients n'ayant pas commandé depuis plus de 6 mois
         /*
-        public static void exportjson(MySqlConnection connection,string outputFilePath, string email)
+        public static void exportjson(MySqlConnection connection, string outputFilePath)
         {
             // Connexion à la base de données SQL
-            
-            string query = "SELECT * FROM client WHERE Courriel NOT IN (SELECT Courriel FROM commande WHERE date_Commande > DATE_SUB(NOW(), INTERVAL 6 MONTH)) UNION SELECT * FROM client LEFT JOIN commande ON client.Courriel = commande.Courriel WHERE commande.Numero_Commande IS NULL ";
+            string query = "SELECT * FROM client WHERE Courriel NOT IN (SELECT Courriel FROM commande WHERE date_Commande >= DATE_SUB(NOW(), INTERVAL 6 MONTH));";
             MySqlCommand command = new MySqlCommand(query, connection);
 
             MySqlDataReader clients = command.ExecuteReader();
@@ -222,11 +221,10 @@ namespace WindowsFormsApp1
             }
 
             // Sérialisation de la liste de clients en JSON
-            string json = JsonConvert.SerializeObject(clients, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(liste_clients, Formatting.Indented);
 
             // Écriture du JSON dans le fichier de sortie
             System.IO.File.WriteAllText(outputFilePath, json);
-
         }
         */
 

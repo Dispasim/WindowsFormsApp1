@@ -1,6 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
+using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Xml;
+using Formatting = Newtonsoft.Json.Formatting;
 
 namespace testconsole
 
@@ -15,11 +18,12 @@ namespace testconsole
             connection.Open();
             //SortedList<int,int> liste = new SortedList<int,int>();
             Console.WriteLine(fidelite(connection, "test2"));
-            
-            
-            
-            
-            
+
+            exportjson(connection, "C:\\Users\\Kyllian\\OneDrive\\Documents\\Bdd_projet\\output.json");
+
+
+
+
 
 
 
@@ -27,6 +31,7 @@ namespace testconsole
             Console.WriteLine("fin des opérations");
             connection.Close();
         }
+
         //prend un paramètre un cloient et renvoie 0.85 s'il a plus de 5 commandes en moyenne, 0.95 s'il en a plus de 1 mais moins de 5 et 1 sinon
         public static float fidelite(MySqlConnection connection, string courriel)
         {
@@ -164,6 +169,8 @@ namespace testconsole
             }
 
         }
+
+        
 
         public static void AccessoireCommande(MySqlConnection connection, int numCommande, bool Vase, bool Boite, bool Ruban)
         {
@@ -334,6 +341,47 @@ namespace testconsole
             command.Dispose();
         }
 
-        
+
+        public static void exportjson(MySqlConnection connection, string outputFilePath)
+        {
+            // Connexion à la base de données SQL
+            string query = "SELECT * FROM client WHERE Courriel NOT IN (SELECT Courriel FROM commande WHERE date_Commande >= DATE_SUB(NOW(), INTERVAL 6 MONTH));";
+            MySqlCommand command = new MySqlCommand(query, connection);
+
+            MySqlDataReader clients = command.ExecuteReader();
+
+            // Création d'une liste pour stocker les clients
+            List<Client> liste_clients = new List<Client>();
+
+            // Parcours des résultats de la requête SQL
+            while (clients.Read())
+            {
+                Client client = new Client();
+                client.Courriel = Convert.ToString(clients["Courriel"]);
+                liste_clients.Add(client);
+            }
+
+            // Sérialisation de la liste de clients en JSON
+            string json = JsonConvert.SerializeObject(liste_clients, Formatting.Indented);
+
+            // Écriture du JSON dans le fichier de sortie
+            System.IO.File.WriteAllText(outputFilePath, json);
+        }
+
+
+    
+        public class Client //classe Client pour représenter les informations relatives aux clients qu'on va exporter en JSON
+        {
+            public string Courriel { get; set; }
+            public Client() //constructeur par défaut
+            {
+            }
+            public Client(string courriel)
+            {
+                Courriel = courriel;
+            }
+        }
+
+
     }
 }
