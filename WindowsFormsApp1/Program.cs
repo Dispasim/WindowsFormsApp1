@@ -249,12 +249,17 @@ namespace WindowsFormsApp1
             float rep = 1;
             string query1 = "select round(datediff(cast(NOW() as DATE), MIN(date_Commande)) / 30.5) from commande where commande.Courriel = '" + courriel + "';";
             string query2 = "SELECT COUNT(*) FROM fleurs.commande WHERE commande.courriel = '" + courriel + "';";
+            string query3 = "select count(*) from commande where Courriel = '" + courriel + "';";
             MySqlCommand command1 = new MySqlCommand(query1, connection);
             MySqlCommand command2 = new MySqlCommand(query2, connection);
-
+            MySqlCommand command3 = new MySqlCommand(query3, connection);
+            if (command3.ExecuteScalar().ToString() == "0")
+            {
+                return 1;
+            }
             object mois = command1.ExecuteScalar();
             object commande = command2.ExecuteScalar();
-            float Mois = float.Parse(mois.ToString()) + 1;
+            float Mois = float.Parse(mois.ToString());
             float Commande = float.Parse(commande.ToString());
             float moyenne = Commande / Mois;
             if (moyenne >= 5)
@@ -481,10 +486,10 @@ namespace WindowsFormsApp1
 
         }
 
-        public static string SommePrixFleur(string Gerbera, string Ginger, string Glaieul, string Marguerite, string RoseR, string RoseB, string Oiseau, string Genet, string Lys, string Alstromeria, string Orchidee, string Verdure)
+        public static float SommePrixFleur(string Gerbera, string Ginger, string Glaieul, string Marguerite, string RoseR, string RoseB, string Oiseau, string Genet, string Lys, string Alstromeria, string Orchidee, string Verdure)
         {
             float rep;
-            string rep1;
+            
             float gerbera;
             float.TryParse(Gerbera, out gerbera);
             float ginger;
@@ -510,8 +515,8 @@ namespace WindowsFormsApp1
             float verdure;
             float.TryParse(Verdure, out verdure);
             rep = 5 * gerbera + 4 * ginger + glaieul + 2.25F * marguerite + 2.5F * roseR + 5 * roseB + 4 * oiseau + 3 * genet + 4 * lys + 5 * alstromeria + 3.5F * orchidee + verdure;
-            rep1 = rep.ToString();
-            return rep1;
+            
+            return rep;
 
         }
 
@@ -687,6 +692,59 @@ namespace WindowsFormsApp1
                 Console.WriteLine(e.ToString());
             }
             command.Dispose();
+        }
+        // renvoie le nom lié à une commande
+        public static string recupNom(MySqlConnection connection, string numcommande)
+        {
+            string rep;
+            string query = "select Nom_Client from client,commande where client.Courriel = commande.Courriel and commande.Numero_Commande = " + numcommande + ";";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            rep = command.ExecuteScalar().ToString();
+            return rep;
+        }
+
+        // renvoie le prénom lié à une commande
+        public static string recupPrenom(MySqlConnection connection, string numcommande)
+        {
+            string rep;
+            string query = "select Prenom_Client from client,commande where client.Courriel = commande.Courriel and commande.Numero_Commande = " + numcommande + ";";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            rep = command.ExecuteScalar().ToString();
+            return rep;
+        }
+
+        //renvoie la liste de tous les Emails des client
+
+        public static List<string> listeCourriel(MySqlConnection connection)
+        {
+            List<string> rep = new List<string>();
+            string query = "select Courriel from client";
+            MySqlCommand command = new MySqlCommand(query,connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                rep.Add(reader.GetString(0));
+            }
+            reader.Close();
+            command.Dispose();
+            return rep;
+
+        }
+
+        //renvoie la liste des commandes d'un client
+        public static List<string> listeCommandeClient(MySqlConnection connection, string courriel) 
+        {
+            List<string> rep = new List<string>();
+            string query = "select Numero_Commande from commande where Courriel = '" + courriel +"';";
+            MySqlCommand command = new MySqlCommand( query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                rep.Add(reader.GetString(0));
+            }
+            reader.Close();
+            command.Dispose();
+            return rep;
         }
 
 

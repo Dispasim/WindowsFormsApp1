@@ -101,6 +101,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ConnectionAdmin";
             this.Text = "ConnectionAdmin";
+            this.Load += new System.EventHandler(this.ConnectionAdmin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

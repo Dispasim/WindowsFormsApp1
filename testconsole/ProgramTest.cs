@@ -6,7 +6,7 @@ namespace testconsole
 
 
 {
-    internal class Program
+    internal class ProgramTest
     {
         static void Main(string[] args)
         {
@@ -14,7 +14,7 @@ namespace testconsole
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
             //SortedList<int,int> liste = new SortedList<int,int>();
-            LiaisonCommandePerso(connection, 1000000, 10001);
+            Console.WriteLine(fidelite(connection, "test2"));
             
             
             
@@ -33,14 +33,22 @@ namespace testconsole
             float rep = 1;
             string query1 = "select round(datediff(cast(NOW() as DATE), MIN(date_Commande)) / 30.5) from commande where commande.Courriel = '" + courriel + "';";
             string query2 = "SELECT COUNT(*) FROM fleurs.commande WHERE commande.courriel = '" + courriel + "';";
+            string query3 = "select count(*) from commande where Courriel = '" + courriel + "';";
+
             MySqlCommand command1 = new MySqlCommand(query1, connection);
             MySqlCommand command2 = new MySqlCommand(query2, connection);
-
+            MySqlCommand command3 = new MySqlCommand(query3, connection);
+            if (command3.ExecuteScalar().ToString() == "0")
+            {
+                return 1;
+            }
             object mois  = command1.ExecuteScalar();
             object commande = command2.ExecuteScalar();
-            float Mois = float.Parse(mois.ToString())+1;
+            
+            float Mois = float.Parse(mois.ToString());
             float Commande = float.Parse(commande.ToString());
             float moyenne = Commande / Mois;
+            Console.WriteLine(moyenne);
             if (moyenne >= 5) {
                 rep = 0.85F;
             }
@@ -325,5 +333,7 @@ namespace testconsole
             }
             command.Dispose();
         }
+
+        
     }
 }

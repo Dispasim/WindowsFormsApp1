@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             PageBienvenue pageBienvenue = new PageBienvenue(connection);
-            pageBienvenue.Show();
+            pageBienvenue.ShowDialog();
             this.Close();
 
         }
@@ -40,6 +40,11 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Mauvais identifiant ou mot de passe");
             }
+        }
+
+        private void ConnectionAdmin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

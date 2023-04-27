@@ -47,5 +47,12 @@ namespace WindowsFormsApp1
             adminStocks.ShowDialog();
             this.Close();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            PageBienvenue pageBienvenue = new PageBienvenue(connection);
+            pageBienvenue.ShowDialog();
+            this.Close();
+        }
     }
 }
