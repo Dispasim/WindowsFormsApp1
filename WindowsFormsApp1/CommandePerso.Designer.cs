@@ -89,6 +89,9 @@
             this.label24 = new System.Windows.Forms.Label();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -631,7 +634,7 @@
             // 
             this.richTextBox2.Location = new System.Drawing.Point(47, 255);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(248, 349);
+            this.richTextBox2.Size = new System.Drawing.Size(248, 276);
             this.richTextBox2.TabIndex = 84;
             this.richTextBox2.Text = "";
             // 
@@ -647,11 +650,39 @@
             this.checkBox14.Text = "Quantité exacte";
             this.checkBox14.UseVisualStyleBackColor = true;
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(44, 561);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(73, 13);
+            this.label25.TabIndex = 86;
+            this.label25.Text = "Prix souhaité :";
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(132, 558);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(100, 20);
+            this.textBox12.TabIndex = 87;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(238, 561);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(13, 13);
+            this.label26.TabIndex = 88;
+            this.label26.Text = "€";
+            // 
             // CommandePerso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(730, 668);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.textBox12);
+            this.Controls.Add(this.label25);
             this.Controls.Add(this.checkBox14);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.label24);
@@ -782,5 +813,8 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.CheckBox checkBox14;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.Label label26;
     }
 }

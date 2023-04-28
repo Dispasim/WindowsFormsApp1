@@ -81,6 +81,7 @@ namespace WindowsFormsApp1
             label11.Text = Program.recupDonnee(connection, "date_Commande", "commande", "Numero_Commande", numerocommande);
             label16.Text = Program.recupDonnee(connection, "Date_Livraison", "commande", "Numero_Commande", numerocommande);
             label12.Text = Program.adresseMagasinCommande(connection, numerocommande);
+            label18.Text = Program.recupDonnee(connection, "Prix_Commande", "commande", "Numero_Commande", numerocommande) + "€";
             string etat = Program.recupDonnee(connection, "Code_Etat", "commande", "Numero_Commande", numerocommande);
             if (etat == "VINV"|| etat == "CPAV")
             {

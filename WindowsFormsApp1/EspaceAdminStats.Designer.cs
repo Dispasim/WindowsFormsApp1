@@ -51,7 +51,9 @@
             "Exporter les clients n\'aillant pas commandé depuis plus de 6 mois.",
             "Bouquet standard le plus acheté.",
             "Meilleur client du mois.",
-            "Meilleur client de l\'année."});
+            "Meilleur client de l\'année.",
+            "Prix moyen d\'un bouquet.",
+            "Prix moyen d\'un bouquet acheté."});
             this.listBox1.Location = new System.Drawing.Point(12, 27);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(341, 251);

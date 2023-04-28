@@ -70,6 +70,14 @@ namespace WindowsFormsApp1
                 MessageBox.Show(Program.meilleurClientAnnee(connection));
 
             }
+            else if(element == "Prix moyen d'un bouquet acheté.")
+            {
+                MessageBox.Show(Program.CalculerPrixMoyenBouquetAchete(connection).ToString() + "€");
+            }
+            else if (element == "Prix moyen d'un bouquet.")
+            {
+                MessageBox.Show(Program.CalculerPrixMoyenBouquet(connection).ToString()+ "€");
+            }
         }
     }
 }

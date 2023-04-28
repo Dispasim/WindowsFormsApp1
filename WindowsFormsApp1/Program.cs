@@ -109,7 +109,7 @@ namespace WindowsFormsApp1
         }
 
         //Méthode qui crée une commande
-        public static void CreationCommande(MySqlConnection connection, string adresse, string message, string Courriel, int id_bouquet, int id_magasin,DateTime dateLivraison)
+        public static void CreationCommande(MySqlConnection connection, string adresse, string message, string Courriel, int id_bouquet, int id_magasin,DateTime dateLivraison, string prix)
         {
 
             Random random = new Random();
@@ -134,7 +134,7 @@ namespace WindowsFormsApp1
             {
                 numerocommande = random.Next(1000000, 9999999);
             }
-            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Bouquet,Id_Magasin,Date_Livraison) values(" + numerocommande.ToString() + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_bouquet + "," + id_magasin + ",date('" + datelivraison + "'));";
+            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Bouquet,Id_Magasin,Date_Livraison,Prix_Commande) values(" + numerocommande.ToString() + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_bouquet + "," + id_magasin + ",date('" + datelivraison + "')," + prix +");";
             MySqlCommand command = new MySqlCommand(query, connection);
 
             try
@@ -344,7 +344,7 @@ namespace WindowsFormsApp1
             command.Dispose ();
         }
         // crée la commande perso
-        public static void CreationCommandePerso(MySqlConnection connection, SortedList<int, string> fleurs, bool Vase, bool Boite, bool Ruban, string adresse, string message, string Courriel, int id_magasin, DateTime dateLivraison, string indication)
+        public static void CreationCommandePerso(MySqlConnection connection, SortedList<int, string> fleurs, bool Vase, bool Boite, bool Ruban, string adresse, string message, string Courriel, int id_magasin, DateTime dateLivraison, string indication,string prix)
         {
             Random random = new Random();
             int numerocommande = random.Next(1000000, 9999999);
@@ -375,7 +375,7 @@ namespace WindowsFormsApp1
             AccessoireCommande(connection, numerocommande, Vase, Boite, Ruban);
             if (indication1 == "")
             {
-                indication = "pas d'indication";
+                indication = "pas d indication";
             }
             
                 foreach (KeyValuePair<int, string> kvp in fleurs)
@@ -387,7 +387,8 @@ namespace WindowsFormsApp1
 
                 }
 
-            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Magasin,Date_Livraison,Commande_Perso,Indication) values(" + numerocommande + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_magasin + ",date('" + datelivraison + "')," + true + ",'" + indication + "');";
+            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Magasin,Date_Livraison,Commande_Perso,Indication,Prix_Commande) values(" + numerocommande + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_magasin + ",date('" + datelivraison + "')," + true + ",'" + indication + "',"+ prix +");";
+            MessageBox.Show(query);
             
             
             MySqlCommand command = new MySqlCommand(query, connection);
@@ -405,7 +406,7 @@ namespace WindowsFormsApp1
 
         }
         // creation commande perso si y'a pas de quantité de fleur 
-        public static void creationCommandePerso1(MySqlConnection connection, List<int> fleurs, bool Vase, bool Boite, bool Ruban, string adresse, string message, string Courriel, int id_magasin, DateTime dateLivraison, string indication)
+        public static void creationCommandePerso1(MySqlConnection connection, List<int> fleurs, bool Vase, bool Boite, bool Ruban, string adresse, string message, string Courriel, int id_magasin, DateTime dateLivraison, string indication,string prix)
         {
             Random random = new Random();
             int numerocommande = random.Next(1000000, 9999999);
@@ -433,13 +434,13 @@ namespace WindowsFormsApp1
             AccessoireCommande(connection, numerocommande, Vase, Boite, Ruban);
             if (indication1 == "")
             {
-                indication = "pas d'indication";
+                indication = "pas d indication";
             }
             foreach (int fleur in fleurs)
             {
                 LiaisonCommandePerso1(connection, numerocommande, fleur);
             }
-            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Magasin,Date_Livraison,Commande_Perso,Indication) values(" + numerocommande + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_magasin + ",date('" + datelivraison + "')," + true + ",'" + indication + "');";
+            string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Magasin,Date_Livraison,Commande_Perso,Indication,Prix_Commande) values(" + numerocommande + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_magasin + ",date('" + datelivraison + "')," + true + ",'" + indication + "'," + prix +");";
             MySqlCommand command = new MySqlCommand(query, connection);
 
             try
@@ -650,8 +651,34 @@ namespace WindowsFormsApp1
             {
                     prixMoyen = prixMoyen / nombreBouquets; 
             }         
-            return prixMoyen;          
+            return Math.Round(prixMoyen, 2);          
         }
+        public static double CalculerPrixMoyenBouquetAchete(MySqlConnection connection)
+        {
+            double prixMoyen = 0;
+            int nombreBouquets = 0;
+
+            string query = "SELECT Prix_Commande FROM commande";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                double prix = reader.GetDouble("Prix_Commande");
+                prixMoyen += prix;
+                nombreBouquets++;
+            }
+
+            reader.Close();
+            command.Dispose();
+
+            if (nombreBouquets > 0) // surtout !=0
+            {
+                prixMoyen = prixMoyen / nombreBouquets;
+            }
+            return Math.Round(prixMoyen,2);
+        }
+
 
         // à écrire dans le main
         /*

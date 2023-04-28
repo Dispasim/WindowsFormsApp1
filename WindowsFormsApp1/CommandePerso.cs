@@ -59,6 +59,7 @@ namespace WindowsFormsApp1
                 bool Ruban = checkBox2.Checked;
                 if (checkBox14.Checked)
                 {
+                    string prix = (Program.SommePrixFleur(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text, textBox7.Text, textBox8.Text, textBox9.Text, textBox10.Text, textBox11.Text, Verdure.Text) * Program.fidelite(connection, courriel)).ToString().Replace(',', '.');
                     SortedList<int, string> fleurs = new SortedList<int, string>();
                     fleurs.Add(10001, textBox1.Text);
                     fleurs.Add(10002, textBox2.Text);
@@ -72,67 +73,87 @@ namespace WindowsFormsApp1
                     fleurs.Add(100010, textBox10.Text);
                     fleurs.Add(100011, textBox11.Text);
                     fleurs.Add(100012, Verdure.Text);
-                    
-                    Program.CreationCommandePerso(connection, fleurs, Vase, Boite, Ruban, textBox13.Text, richTextBox1.Text, courriel, 30001, dateLivraison, richTextBox2.Text);
+
+                    Program.CreationCommandePerso(connection, fleurs, Vase, Boite, Ruban, textBox13.Text, richTextBox1.Text, courriel, 30001, dateLivraison, richTextBox2.Text, prix);
+                    EspaceClient Espaceclient = new EspaceClient(connection, courriel);
+                    Espaceclient.ShowDialog();
+                    this.Close();
                 }
                 else
                 {
-                    List<int> fleurs= new List<int>();
-                    if (Gerbera.Checked)
+                    if (textBox12.Text.Contains('.'))
                     {
-                        fleurs.Add(10001);
+                        MessageBox.Show("merci d'utiliser une virgule");
                     }
-                    if (checkBox3.Checked)
+                    else if (!float.TryParse(textBox12.Text, out _))
                     {
-                        fleurs.Add(10002);
+                        MessageBox.Show("merci d'entrer un prix valide");
                     }
-                    if (checkBox4.Checked)
+                    else if (float.Parse(textBox12.Text) <= 0)
                     {
-                        fleurs.Add(10003);
+                        MessageBox.Show("merci d'entrer un prix valide");
                     }
-                    if (checkBox5.Checked)
+                    else
                     {
-                        fleurs.Add(10004);
-                    }
-                    if (checkBox6.Checked)
-                    {
-                        fleurs.Add(10005);
-                    }
-                    if (checkBox7.Checked)
-                    {
-                        fleurs.Add(10006);
-                    }
-                    if (checkBox8.Checked)
-                    {
-                        fleurs.Add(10007);
-                    }
-                    if (checkBox9.Checked)
-                    {
-                        fleurs.Add(10008);
-                    }
-                    if (checkBox10.Checked)
-                    {
-                        fleurs.Add(10009);
-                    }
-                    if (checkBox11.Checked)
-                    {
-                        fleurs.Add(100010);
-                    }
-                    if (checkBox12.Checked)
-                    {
-                        fleurs.Add(100011);
-                    }
-                    if (checkBox13.Checked)
-                    {
-                        fleurs.Add(100012);
-                    }
-                    Program.creationCommandePerso1(connection, fleurs, Vase, Boite, Ruban, textBox13.Text, richTextBox1.Text, courriel, 30001, dateLivraison, richTextBox2.Text);
+                        List<int> fleurs = new List<int>();
+                        if (Gerbera.Checked)
+                        {
+                            fleurs.Add(10001);
+                        }
+                        if (checkBox3.Checked)
+                        {
+                            fleurs.Add(10002);
+                        }
+                        if (checkBox4.Checked)
+                        {
+                            fleurs.Add(10003);
+                        }
+                        if (checkBox5.Checked)
+                        {
+                            fleurs.Add(10004);
+                        }
+                        if (checkBox6.Checked)
+                        {
+                            fleurs.Add(10005);
+                        }
+                        if (checkBox7.Checked)
+                        {
+                            fleurs.Add(10006);
+                        }
+                        if (checkBox8.Checked)
+                        {
+                            fleurs.Add(10007);
+                        }
+                        if (checkBox9.Checked)
+                        {
+                            fleurs.Add(10008);
+                        }
+                        if (checkBox10.Checked)
+                        {
+                            fleurs.Add(10009);
+                        }
+                        if (checkBox11.Checked)
+                        {
+                            fleurs.Add(100010);
+                        }
+                        if (checkBox12.Checked)
+                        {
+                            fleurs.Add(100011);
+                        }
+                        if (checkBox13.Checked)
+                        {
+                            fleurs.Add(100012);
+                        }
+                        Program.creationCommandePerso1(connection, fleurs, Vase, Boite, Ruban, textBox13.Text, richTextBox1.Text, courriel, 30001, dateLivraison, richTextBox2.Text, textBox12.Text.Replace(',', '.'));
 
 
+
+
+                        EspaceClient Espaceclient = new EspaceClient(connection, courriel);
+                        Espaceclient.ShowDialog();
+                        this.Close();
+                    }
                 }
-                EspaceClient Espaceclient = new EspaceClient(connection, courriel);
-                Espaceclient.ShowDialog();
-                this.Close();
             }
             
         }

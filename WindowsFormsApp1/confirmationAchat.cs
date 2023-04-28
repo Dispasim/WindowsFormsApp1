@@ -102,8 +102,9 @@ namespace WindowsFormsApp1
                 else
                 {
                     magasin = int.Parse(Program.recupDonnee(connection, "Id_Magasin", "magasin", "Adresse_magasin", texteElement));
+                    string prix = (float.Parse(Program.recupDonneeInt(connection, "Prix_Bouquet", "bouquet", "Id_Bouquet", id)) * Program.fidelite(connection, email)).ToString();
 
-                    Program.CreationCommande(connection, textBox1.Text, richTextBox1.Text, email, id, magasin,dateLivraison);
+                    Program.CreationCommande(connection, textBox1.Text, richTextBox1.Text, email, id, magasin,dateLivraison,prix);
                     EspaceClient espaceClient = new EspaceClient(connection, email);
                     espaceClient.ShowDialog();
                     this.Close();

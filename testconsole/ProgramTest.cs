@@ -17,7 +17,7 @@ namespace testconsole
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
             //SortedList<int,int> liste = new SortedList<int,int>();
-            
+            Console.WriteLine(float.Parse("90,2"));
             Console.WriteLine(meilleurClientMois(connection));
 
 
