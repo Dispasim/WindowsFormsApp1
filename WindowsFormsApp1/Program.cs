@@ -800,11 +800,7 @@ namespace WindowsFormsApp1
             MySqlCommand command = new MySqlCommand(query, connection);
 
             MySqlDataReader clients = command.ExecuteReader();
-
-            // Création d'une liste pour stocker les clients
             List<Client> liste_clients = new List<Client>();
-
-            // Parcours des résultats de la requête SQL
             while (clients.Read())
             {
                 Client client = new Client();
@@ -812,13 +808,9 @@ namespace WindowsFormsApp1
                 liste_clients.Add(client);
             }
             clients.Close();
-
-            // Sérialisation de la liste de clients en JSON
-            string json = JsonConvert.SerializeObject(liste_clients, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(liste_clients, Formatting.Indented); // Sérialisation de la liste de clients en JSON
 
             string outputFilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\myJsonFile.json";
-
-            // Écriture du JSON dans le fichier de sortie
             System.IO.File.WriteAllText(outputFilePath, json);
         }
 
