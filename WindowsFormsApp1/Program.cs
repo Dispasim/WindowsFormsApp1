@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -33,6 +34,7 @@ namespace WindowsFormsApp1
             Application.Run(new PageBienvenue(connection));
             //recupDonnee("prix_Bouquet", "bouquet", "Id_Bouquet", "20002");
             MessageBox.Show("fin des opérations");
+            
 
 
         }
@@ -202,8 +204,8 @@ namespace WindowsFormsApp1
         }
 
         //Méthode pour exporter en json les clients n'ayant pas commandé depuis plus de 6 mois
-        /*
-        public static void exportjson(MySqlConnection connection, string outputFilePath)
+        
+        public static void exportjson(MySqlConnection connection)
         {
 
             string query = "SELECT * FROM client WHERE Courriel NOT IN (SELECT Courriel FROM commande WHERE date_Commande >= DATE_SUB(NOW(), INTERVAL 6 MONTH));";
@@ -220,10 +222,11 @@ namespace WindowsFormsApp1
 
             // Sérialisation de la liste de clients en JSON
             string json = JsonConvert.SerializeObject(liste_clients, Formatting.Indented);
+            string outputFilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\myJsonFile.json";
 
             System.IO.File.WriteAllText(outputFilePath, json);
         }
-        */
+        
 
         public class Client //classe Client pour représenter les informations relatives aux clients qu'on va exporter en JSON
         {
@@ -787,28 +790,6 @@ namespace WindowsFormsApp1
             command.Dispose();
             return rep;
         }
-
-        public static void exportjson(MySqlConnection connection)
-        {
-            // Connexion à la base de données SQL
-            string query = "SELECT * FROM client WHERE Courriel NOT IN (SELECT Courriel FROM commande WHERE date_Commande >= DATE_SUB(NOW(), INTERVAL 6 MONTH));";
-            MySqlCommand command = new MySqlCommand(query, connection);
-
-            MySqlDataReader clients = command.ExecuteReader();
-            List<Client> liste_clients = new List<Client>();
-            while (clients.Read())
-            {
-                Client client = new Client();
-                client.Courriel = Convert.ToString(clients["Courriel"]);
-                liste_clients.Add(client);
-            }
-            clients.Close();
-            string json = JsonConvert.SerializeObject(liste_clients, Formatting.Indented); // Sérialisation de la liste de clients en JSON
-
-            string outputFilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\myJsonFile.json";
-            System.IO.File.WriteAllText(outputFilePath, json);
-        }
-
         public static string meilleurClientMois(MySqlConnection connection)
         {
             string rep;
@@ -837,6 +818,29 @@ namespace WindowsFormsApp1
             MySqlCommand command1 = new MySqlCommand(query1, connection);
             rep = command1.ExecuteScalar().ToString();
             return rep;
+        }
+
+        public static int nombreCommandeTotal(MySqlConnection connection) //UNION
+        {
+            int nbC;
+            string query = "SELECT COUNT(*) FROM commande UNION SELECT COUNT(*) FROM commande_perso GROUP BY Numero_Commande;";
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            nbC = int.Parse(command.ExecuteScalar().ToString());
+
+
+            return nbC;
+        }
+
+        public static int chiffredaffaire(MySqlConnection connection) //Syncronisée
+        {
+            int CA;
+            string query = "SELECT SUM(Prix_Commande) FROM commande WHERE Prix_Commande IS NOT NULL";
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            CA = Convert.ToInt32(command.ExecuteScalar());
+
+            return CA;
         }
 
 
