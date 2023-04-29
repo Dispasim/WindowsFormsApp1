@@ -205,16 +205,12 @@ namespace WindowsFormsApp1
         /*
         public static void exportjson(MySqlConnection connection, string outputFilePath)
         {
-            // Connexion à la base de données SQL
+
             string query = "SELECT * FROM client WHERE Courriel NOT IN (SELECT Courriel FROM commande WHERE date_Commande >= DATE_SUB(NOW(), INTERVAL 6 MONTH));";
             MySqlCommand command = new MySqlCommand(query, connection);
 
             MySqlDataReader clients = command.ExecuteReader();
-
-            // Création d'une liste pour stocker les clients
             List<Client> liste_clients = new List<Client>();
-
-            // Parcours des résultats de la requête SQL
             while (clients.Read())
             {
                 Client client = new Client();
@@ -225,7 +221,6 @@ namespace WindowsFormsApp1
             // Sérialisation de la liste de clients en JSON
             string json = JsonConvert.SerializeObject(liste_clients, Formatting.Indented);
 
-            // Écriture du JSON dans le fichier de sortie
             System.IO.File.WriteAllText(outputFilePath, json);
         }
         */
