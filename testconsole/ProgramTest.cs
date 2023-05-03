@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Ocsp;
 using System.Diagnostics;
 using System.Drawing.Printing;
 using System.Reflection.Metadata;
@@ -20,14 +21,20 @@ namespace testconsole
             connection.Open();
             //SortedList<int,int> liste = new SortedList<int,int>();
             Console.WriteLine(float.Parse("90,2"));
-            Console.WriteLine(meilleurClientMois(connection));
+            
 
-            Console.WriteLine(nombreCommandeTotal(connection));
 
-            Console.WriteLine(chiffredaffaire(connection));
+            List<string> fleurs = fleurSupMoy(connection);
+            afficherListe(fleurs);
+
 
             Console.WriteLine("fin des opérations");
             connection.Close();
+        }
+
+        private static void afficherListe(Func<MySqlConnection, List<string>> fleurSupMoy)
+        {
+            throw new NotImplementedException();
         }
 
         //prend un paramètre un cloient et renvoie 0.85 s'il a plus de 5 commandes en moyenne, 0.95 s'il en a plus de 1 mais moins de 5 et 1 sinon
@@ -404,7 +411,7 @@ namespace testconsole
 
 
         }
-
+        /*
         public static string meilleurClientMois(MySqlConnection connection)
         {
             string rep;
@@ -413,7 +420,7 @@ namespace testconsole
             rep = command.ExecuteScalar().ToString();
             return rep;
         }
-
+        */
         public static string meilleurClientAnnee(MySqlConnection connection)
         {
             string rep;
@@ -453,6 +460,37 @@ namespace testconsole
 
             return CA;
         }
+       
+        public static List<string> fleurSupMoy(MySqlConnection connection)
+        {
+            List<string> fleurs = new List<string>();
+            string query = "SELECT nom_Fleur FROM fleur WHERE prix_Fleur > (SELECT AVG(prix_Fleur) FROM fleur)"; // requête syncronisée
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                fleurs.Add(reader.GetString(0));
+            }
+            reader.Close();
+            command.Dispose();
+            return fleurs;
+        }
+        
+        public static void afficherListe(List<string> liste)
+        {
+            foreach (string element in liste)
+            {
+                Console.WriteLine(element);
+            }
+        }
+        
+
+
+
+
 
 
 
