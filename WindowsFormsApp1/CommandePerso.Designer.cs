@@ -689,6 +689,7 @@
             this.label24.Size = new System.Drawing.Size(379, 160);
             this.label24.TabIndex = 83;
             this.label24.Text = resources.GetString("label24.Text");
+            this.label24.Click += new System.EventHandler(this.label24_Click);
             // 
             // richTextBox2
             // 
@@ -698,6 +699,7 @@
             this.richTextBox2.Size = new System.Drawing.Size(370, 422);
             this.richTextBox2.TabIndex = 84;
             this.richTextBox2.Text = "";
+            this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
             // 
             // checkBox14
             // 

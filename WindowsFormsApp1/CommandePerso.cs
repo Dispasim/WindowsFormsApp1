@@ -275,5 +275,15 @@ namespace WindowsFormsApp1
             for (int ix = 0; ix < checkedListBox1.Items.Count; ++ix)
                 if (ix != e.Index) checkedListBox1.SetItemChecked(ix, false);
         }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label24_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

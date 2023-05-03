@@ -2,6 +2,8 @@
 using MySqlX.XDevAPI.Common;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Drawing.Printing;
+using System.Reflection.Metadata;
 using System.Xml;
 using Formatting = Newtonsoft.Json.Formatting;
 
@@ -20,14 +22,9 @@ namespace testconsole
             Console.WriteLine(float.Parse("90,2"));
             Console.WriteLine(meilleurClientMois(connection));
 
+            Console.WriteLine(nombreCommandeTotal(connection));
 
-
-
-
-
-
-
-
+            Console.WriteLine(chiffredaffaire(connection));
 
             Console.WriteLine("fin des opérations");
             connection.Close();
@@ -345,31 +342,24 @@ namespace testconsole
 
         public static void exportjson(MySqlConnection connection)
         {
-            // Connexion à la base de données SQL
+            
             string query = "SELECT * FROM client WHERE Courriel NOT IN (SELECT Courriel FROM commande WHERE date_Commande >= DATE_SUB(NOW(), INTERVAL 6 MONTH));";
             MySqlCommand command = new MySqlCommand(query, connection);
 
             MySqlDataReader clients = command.ExecuteReader();
-
-            // Création d'une liste pour stocker les clients
             List<Client> liste_clients = new List<Client>();
-
-            // Parcours des résultats de la requête SQL
             while (clients.Read())
             {
                 Client client = new Client();
                 client.Courriel = Convert.ToString(clients["Courriel"]);
                 liste_clients.Add(client);
             }
-            clients.Close();
-
-            // Sérialisation de la liste de clients en JSON
             string json = JsonConvert.SerializeObject(liste_clients, Formatting.Indented);
 
             string outputFilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\myJsonFile.json";
 
-            // Écriture du JSON dans le fichier de sortie
             System.IO.File.WriteAllText(outputFilePath, json);
+            
         }
 
 
@@ -441,7 +431,28 @@ namespace testconsole
             rep = command.ExecuteScalar().ToString();
             return rep;
         }
+        public static int nombreCommandeTotal(MySqlConnection connection) //UNION
+        {
+            int nbC;
+            string query = "SELECT COUNT(*) FROM commande UNION SELECT COUNT(*) FROM commande_perso GROUP BY Numero_Commande;";
 
+            MySqlCommand command = new MySqlCommand(query, connection);
+            nbC = int.Parse(command.ExecuteScalar().ToString());
+
+
+            return nbC;
+        }
+
+        public static int chiffredaffaire(MySqlConnection connection) //Syncronisée
+        {
+            int CA;
+            string query = "SELECT SUM(Prix_Commande) FROM commande WHERE Prix_Commande IS NOT NULL";
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            CA = Convert.ToInt32(command.ExecuteScalar());
+
+            return CA;
+        }
 
 
 
