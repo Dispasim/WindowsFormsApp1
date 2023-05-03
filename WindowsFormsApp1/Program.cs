@@ -172,6 +172,7 @@ namespace WindowsFormsApp1
                 }
 
             }
+            clients.Close();
             document.Save(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\clients.xml");
 
 

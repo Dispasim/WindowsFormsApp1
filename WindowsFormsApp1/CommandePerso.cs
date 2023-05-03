@@ -34,6 +34,13 @@ namespace WindowsFormsApp1
         {
             labelqt.Text = "0";
             labelprix.Text = "0€";
+            checkedListBox1.Items.Clear();
+            List<string> liste = new List<string>();
+            liste = Program.listMagasinAdresse(connection);
+            foreach (string s in liste)
+            {
+                checkedListBox1.Items.Add(s, false);
+            }
 
         }
 
@@ -57,6 +64,14 @@ namespace WindowsFormsApp1
                 bool Vase = checkBox1.Checked;
                 bool Boite = boite.Checked;
                 bool Ruban = checkBox2.Checked;
+                string texteElement = "";
+                foreach (object itemChecked in checkedListBox1.CheckedItems)
+                {
+                    texteElement = itemChecked.ToString();
+
+
+                }
+                int magasin = int.Parse(Program.recupDonnee(connection, "Id_Magasin", "magasin", "Adresse_magasin", texteElement));
                 if (checkBox14.Checked)
                 {
                     string prix = (Program.SommePrixFleur(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text, textBox7.Text, textBox8.Text, textBox9.Text, textBox10.Text, textBox11.Text, Verdure.Text) * Program.fidelite(connection, courriel)).ToString().Replace(',', '.');
@@ -74,7 +89,7 @@ namespace WindowsFormsApp1
                     fleurs.Add(100011, textBox11.Text);
                     fleurs.Add(100012, Verdure.Text);
 
-                    Program.CreationCommandePerso(connection, fleurs, Vase, Boite, Ruban, textBox13.Text, richTextBox1.Text, courriel, 30001, dateLivraison, richTextBox2.Text, prix);
+                    Program.CreationCommandePerso(connection, fleurs, Vase, Boite, Ruban, textBox13.Text, richTextBox1.Text, courriel, magasin, dateLivraison, richTextBox2.Text, prix);
                     EspaceClient Espaceclient = new EspaceClient(connection, courriel);
                     Espaceclient.ShowDialog();
                     this.Close();
@@ -144,7 +159,7 @@ namespace WindowsFormsApp1
                         {
                             fleurs.Add(100012);
                         }
-                        Program.creationCommandePerso1(connection, fleurs, Vase, Boite, Ruban, textBox13.Text, richTextBox1.Text, courriel, 30001, dateLivraison, richTextBox2.Text, textBox12.Text.Replace(',', '.'));
+                        Program.creationCommandePerso1(connection, fleurs, Vase, Boite, Ruban, textBox13.Text, richTextBox1.Text, courriel, magasin, dateLivraison, richTextBox2.Text, textBox12.Text.Replace(',', '.'));
 
 
 
@@ -247,6 +262,18 @@ namespace WindowsFormsApp1
         private void Gerbera_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            // Désactiver toutes les cases à cocher sauf celle sélectionnée
+            for (int ix = 0; ix < checkedListBox1.Items.Count; ++ix)
+                if (ix != e.Index) checkedListBox1.SetItemChecked(ix, false);
         }
     }
 }
