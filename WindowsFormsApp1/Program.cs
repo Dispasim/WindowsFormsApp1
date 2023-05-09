@@ -24,6 +24,7 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
+            MessageBox.Show("hello monde");
             string connectionString = "SERVER=localhost;PORT=3306;DATABASE=fleurs;UID=root;PASSWORD=root;";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();

@@ -29,11 +29,14 @@ namespace WindowsFormsApp1
         {
             CreationCompte creationCompte = new CreationCompte(connection);
             creationCompte.ShowDialog();
+            this.Hide();
             this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Hide();
+
             PageConnection pageConnection = new PageConnection(connection);
             pageConnection.ShowDialog();
             this.Close();
@@ -49,6 +52,7 @@ namespace WindowsFormsApp1
         {
             ConnectionAdmin connectionAdmin = new ConnectionAdmin(connection);
             connectionAdmin.ShowDialog();
+            this.Hide();
             this.Close();
         }
     }
