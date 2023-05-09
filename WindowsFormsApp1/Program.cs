@@ -834,7 +834,7 @@ namespace WindowsFormsApp1
             return nbC;
         }
 
-        public static int chiffredaffaire(MySqlConnection connection) //Syncronisée
+        public static int chiffredaffaire(MySqlConnection connection) 
         {
             int CA;
             string query = "SELECT SUM(Prix_Commande) FROM commande WHERE Prix_Commande IS NOT NULL";
@@ -843,6 +843,30 @@ namespace WindowsFormsApp1
             CA = Convert.ToInt32(command.ExecuteScalar());
 
             return CA;
+        }
+
+        public static List<string> fleurSupMoy(MySqlConnection connection)
+        {
+            List<string> fleurs = new List<string>();
+            string query = "SELECT nom_Fleur FROM fleur WHERE prix_Fleur > (SELECT AVG(prix_Fleur) FROM fleur)"; // requête syncronisée
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                fleurs.Add(reader.GetString(0));
+            }
+            reader.Close();
+            command.Dispose();
+            return fleurs;
+        }
+
+        public static void afficherListe(List<string> liste)
+        {
+            foreach (string element in liste)
+            {
+                Console.WriteLine(element);
+            }
         }
 
 
