@@ -35,6 +35,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Hide();
             PageBienvenue pageBienvenue = new PageBienvenue(connection);
             pageBienvenue.ShowDialog();
             this.Close();

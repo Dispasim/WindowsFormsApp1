@@ -29,6 +29,7 @@ namespace WindowsFormsApp1
 
         private void buttondeco_Click(object sender, EventArgs e)
         {
+            this.Hide();
             PageBienvenue pageBienvenue = new PageBienvenue(connection);
             pageBienvenue.ShowDialog();
             this.Close();
@@ -36,6 +37,7 @@ namespace WindowsFormsApp1
 
         private void buttoncommande_Click(object sender, EventArgs e)
         {
+            this.Hide();
             PageCommande pageCommande = new PageCommande(connection, courriel);
             pageCommande.ShowDialog();
             this.Close();
@@ -43,6 +45,7 @@ namespace WindowsFormsApp1
 
         private void buttonsuivi_Click(object sender, EventArgs e)
         {
+            this.Hide();
             SuiviCommande suiviCommande = new SuiviCommande(connection, courriel);
             suiviCommande.ShowDialog();
             this.Close();

@@ -46,6 +46,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Hide();
             PageCommande Pagecommande = new PageCommande(connection, courriel);
             Pagecommande.ShowDialog();
             this.Close();
@@ -163,7 +164,7 @@ namespace WindowsFormsApp1
 
 
 
-
+                        this.Hide();
                         EspaceClient Espaceclient = new EspaceClient(connection, courriel);
                         Espaceclient.ShowDialog();
                         this.Close();

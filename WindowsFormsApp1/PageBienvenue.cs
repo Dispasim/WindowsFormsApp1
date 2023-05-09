@@ -27,18 +27,21 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+            this.Hide();
             CreationCompte creationCompte = new CreationCompte(connection);
             creationCompte.ShowDialog();
-            this.Hide();
+            
             this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
 
+            this.Hide();
             PageConnection pageConnection = new PageConnection(connection);
             pageConnection.ShowDialog();
+            
             this.Close();
 
         }
@@ -50,9 +53,10 @@ namespace WindowsFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
+            this.Hide();
             ConnectionAdmin connectionAdmin = new ConnectionAdmin(connection);
             connectionAdmin.ShowDialog();
-            this.Hide();
+            
             this.Close();
         }
     }

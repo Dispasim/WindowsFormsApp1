@@ -33,7 +33,7 @@ namespace WindowsFormsApp1
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {this.Hide();
             confirmationAchat confirmationachat = new confirmationAchat(connection,courriel, 20001);
             confirmationachat.ShowDialog();
             this.Close();
@@ -45,42 +45,43 @@ namespace WindowsFormsApp1
         }
 
         private void button4_Click(object sender, EventArgs e)
-        {
+        {this.Hide();
             confirmationAchat confirmationachat = new confirmationAchat(connection, courriel, 20004);
             confirmationachat.ShowDialog();
             this.Close();
         }
 
         private void button5_Click(object sender, EventArgs e)
-        {
+        {this.Hide();
             confirmationAchat confirmationachat = new confirmationAchat(connection, courriel, 20005);
             confirmationachat.ShowDialog();
             this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        {this.Hide();
             confirmationAchat confirmationachat = new confirmationAchat(connection, courriel, 20002);
             confirmationachat.ShowDialog();
             this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
+        {this.Hide();
             confirmationAchat confirmationachat = new confirmationAchat(connection, courriel, 20003);
             confirmationachat.ShowDialog();
             this.Close();
         }
 
         private void button6_Click(object sender, EventArgs e)
-        {
+        {this.Hide();
             CommandePerso commandePerso = new CommandePerso(connection, courriel);
             commandePerso.ShowDialog();
             this.Close();
         }
 
         private void button7_Click(object sender, EventArgs e)
-        {
+        {   
+            this.Hide();
             EspaceClient Espaceclient = new EspaceClient(connection, courriel);
             Espaceclient.ShowDialog();
             this.Close();

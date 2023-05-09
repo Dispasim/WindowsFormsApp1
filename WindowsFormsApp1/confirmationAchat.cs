@@ -74,6 +74,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Hide();
             PageCommande pageCommande = new PageCommande(connection, email);
             pageCommande.ShowDialog();
             this.Close();
@@ -105,6 +106,7 @@ namespace WindowsFormsApp1
                     string prix = (float.Parse(Program.recupDonneeInt(connection, "Prix_Bouquet", "bouquet", "Id_Bouquet", id)) * Program.fidelite(connection, email)).ToString();
 
                     Program.CreationCommande(connection, textBox1.Text, richTextBox1.Text, email, id, magasin,dateLivraison,prix);
+                    this.Hide();
                     EspaceClient espaceClient = new EspaceClient(connection, email);
                     espaceClient.ShowDialog();
                     this.Close();

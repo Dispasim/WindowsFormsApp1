@@ -34,6 +34,7 @@ namespace WindowsFormsApp1
 
         private void Boutton_Retour_Click(object sender, EventArgs e)
         {
+            this.Hide();
             PageBienvenue pageBienvenue = new PageBienvenue(connection);
             pageBienvenue.ShowDialog();
             this.Close();
@@ -49,6 +50,7 @@ namespace WindowsFormsApp1
             {
                 if (Program.VerificationMotdepasse(connection, Mdp, Email))
                 {
+                    this.Hide();
                     EspaceClient espaceClient = new EspaceClient(connection, Email);
                     espaceClient.ShowDialog();
                     this.Close();

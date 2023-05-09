@@ -37,6 +37,7 @@ namespace WindowsFormsApp1
 
         private void button2retour_Click(object sender, EventArgs e)
         {
+            this.Hide();
             PageBienvenue pageBienvenue = new PageBienvenue(connection);
             pageBienvenue.ShowDialog();
             this.Close();
@@ -55,6 +56,7 @@ namespace WindowsFormsApp1
             else
             {
                 Program.CreationClient(connection, textBoxEmail.Text, textBoxmdp.Text, textBoxnom.Text, textBoxprenom.Text, textBoxtelephone.Text, textBoxadresse.Text, textBoxnumero.Text, textBoxDateexpiration.Text, textBoxcrypto.Text);
+                this.Hide();
                 EspaceClient espaceClient = new EspaceClient(connection, textBoxEmail.Text);
                 espaceClient.ShowDialog();
                 this.Close();
