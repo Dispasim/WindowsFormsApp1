@@ -869,6 +869,13 @@ namespace WindowsFormsApp1
             }
         }
 
+        public static void modifStock(MySqlConnection connection, string nomfleur, int nombre)
+        {
+            string query = "update fleur set Stock =" + nombre + " where Nom_Fleur = '" + nomfleur + "';";
+            MySqlCommand command = new MySqlCommand(query,connection);
+            command.ExecuteNonQuery();
+        }
+
 
 
 

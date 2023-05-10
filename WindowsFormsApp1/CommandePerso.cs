@@ -286,5 +286,10 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void textBox12_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

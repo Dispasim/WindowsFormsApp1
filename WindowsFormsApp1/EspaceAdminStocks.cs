@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp1
 {
@@ -46,6 +47,61 @@ namespace WindowsFormsApp1
             label3.Text = Program.recupDonnee(connection, "Stock", "fleur", "Nom_Fleur", fleur);
             label5.Text = Program.recupDonnee(connection, "Prix_Fleur", "fleur", "Nom_Fleur", fleur) + " €";
             label7.Text = Program.recupDonnee(connection, "Disponibilite", "fleur", "Nom_Fleur", fleur);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+            if (listBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("selectionner une fleur");
+            }
+            else if (!int.TryParse(textBox1.Text, out _))
+            {
+                MessageBox.Show("entrer une valeur valide");
+            }
+            else if (int.Parse(textBox1.Text) < 0)
+            {
+                MessageBox.Show("entrer une valeur positive");
+            }
+            else
+            {
+                string fleur = listBox1.SelectedItem as string;
+                int somme = int.Parse(Program.recupDonnee(connection, "Stock", "fleur", "Nom_Fleur", fleur)) + int.Parse(textBox1.Text);
+                Program.modifStock(connection, fleur, somme);
+                label3.Text = Program.recupDonnee(connection, "Stock", "fleur", "Nom_Fleur", fleur);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            if (listBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("selectionner une fleur");
+            }
+            if (!int.TryParse(textBox1.Text, out _))
+            {
+                MessageBox.Show("entrer une valeur valide");
+            }
+            else if (int.Parse(textBox1.Text) < 0)
+            {
+                MessageBox.Show("entrer une valeur positive");
+            }
+            else
+            {
+                string fleur = listBox1.SelectedItem as string;
+                int somme = int.Parse(Program.recupDonnee(connection, "Stock", "fleur", "Nom_Fleur", fleur)) - int.Parse(textBox1.Text);
+                if (somme >= 0)
+                {
+                    Program.modifStock(connection, fleur, somme);
+                    label3.Text = Program.recupDonnee(connection, "Stock", "fleur", "Nom_Fleur", fleur);
+                }
+                else
+                {
+                    MessageBox.Show("impossible");
+                }
+            }
         }
     }
 }
