@@ -34,7 +34,13 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            listBox1.Items.Clear();
+            List<string> fleurs = new List<string>();
+            fleurs = Program.contenuStandard(connection, id.ToString());
+            foreach (string fleur in fleurs)
+            {
+                listBox1.Items.Add(fleur);
+            }
             labelnom.Text = Program.recupDonneeInt(connection, "Nom_Bouquet", "bouquet", "Id_Bouquet", id);
             labelprix.Text = (float.Parse(Program.recupDonneeInt(connection, "Prix_Bouquet", "bouquet", "Id_Bouquet", id)) * Program.fidelite(connection, email)).ToString() + '€';
             labeloccasion.Text = Program.recupDonneeInt(connection, "Categorie", "bouquet", "Id_Bouquet", id);

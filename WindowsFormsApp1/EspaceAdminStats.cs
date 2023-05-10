@@ -79,6 +79,26 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show(Program.CalculerPrixMoyenBouquet(connection).ToString()+ "€");
             }
+            else if (element == "Fleurs plus chères que la moyenne.")
+            {
+                List<string> fleurs = new List<string>();
+                fleurs = Program.fleurSupMoy(connection);
+                string msg = "";
+                foreach (string s in fleurs)
+                {
+                    msg = msg + s + "\n";
+
+                }
+                MessageBox.Show(msg);
+            }
+            else if (element == "Nombre total de commandes.")
+            {
+                MessageBox.Show(Program.nombreCommandeTotal(connection).ToString());
+            }
+            else if (element == "Chiffre d'affaire.")
+            {
+                MessageBox.Show(Program.chiffredaffaire(connection).ToString() + "€");
+            }
         }
     }
 }
