@@ -388,7 +388,7 @@ namespace WindowsFormsApp1
                 }
 
             string query = "INSERT INTO commande(Numero_Commande,Adresse_Livraison,Message,Date_Commande,Code_Etat,Courriel,Id_Magasin,Date_Livraison,Commande_Perso,Indication,Prix_Commande) values(" + numerocommande + ", '" + adresse + "','" + message + "',date('" + date + "'),'" + code + "','" + Courriel + "'," + id_magasin + ",date('" + datelivraison + "')," + true + ",'" + indication + "',"+ prix +");";
-            MessageBox.Show(query);
+            
             
             
             MySqlCommand command = new MySqlCommand(query, connection);
