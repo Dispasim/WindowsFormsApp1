@@ -80,7 +80,7 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("selectionner une fleur");
             }
-            if (!int.TryParse(textBox1.Text, out _))
+            else if (!int.TryParse(textBox1.Text, out _))
             {
                 MessageBox.Show("entrer une valeur valide");
             }
@@ -101,7 +101,12 @@ namespace WindowsFormsApp1
                 {
                     MessageBox.Show("impossible");
                 }
+                if (int.Parse(Program.recupDonnee(connection, "Stock", "fleur", "Nom_Fleur", fleur)) < 20)
+                {
+                    MessageBox.Show("Attention au stock");
+                }
             }
+            
         }
     }
 }

@@ -20,12 +20,8 @@ namespace testconsole
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
             //SortedList<int,int> liste = new SortedList<int,int>();
-            Console.WriteLine(float.Parse("90,2"));
-            
-
-
-            List<string> fleurs = fleurSupMoy(connection);
-            afficherListe(fleurs);
+            double test = 3.5;
+            Console.WriteLine(test + " hello world");
 
 
             Console.WriteLine("fin des opérations");
